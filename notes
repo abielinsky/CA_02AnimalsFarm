@@ -1,0 +1,24 @@
+
+
+Shed                        -------------------------- cows (dairy,Beef) , goats.  milkable or not milkable
+    animalList<animal>
+
+
+
+MilkMachine                  ------------------ Milking Machine
+                                                MIlking Machine
+                                                milk ()
+                                                {
+
+                                                }
+
+
+
+
+
+
+
+
+
+Tank                          -------------------- Milk TAnk
+                                                   Capacity
