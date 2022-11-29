@@ -2,7 +2,13 @@ import java.util.ArrayList;
 
 public class AppSimulator {
 
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
+
+
+        FarmSet FarmSet;
+
+
+
 //
 //        ArrayList<Animal> animalList  = new ArrayLis <>();
 //        animalList.add( new DairyCow(101));
@@ -19,7 +25,7 @@ public class AppSimulator {
 //               int amount = animal.milk();
 //               totalMilk += amount;
 //           }
-//        }
+        }
 
 
 
@@ -28,5 +34,3 @@ public class AppSimulator {
 
 
 
-
-}

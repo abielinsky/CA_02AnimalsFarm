@@ -1,6 +1,6 @@
 public interface IMilkable {
 
-void milk ();
+//void milk ();
 
 
 }
