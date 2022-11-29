@@ -21,16 +21,16 @@ public class DairyCow extends Animal implements IMilkable{
 
     String test = NAMES[new Random().nextInt(NAMES.length)];
 
-//    DairyCow(int id){;
+//    DairyCow(int id){
 //        super(id); //calls animal constructor
 //        this.name= test;
-//        this.udderCapacity= 15 + new Random().nextInt(26);
+//        this.udderCapacity= MIN_CAPACITY + new Random().nextInt(MAX_CAPACITY);
 //    }
 
 
     DairyCow(int id){
         super(id); //calls animal constructor
-        this.udderCapacity = new Random(MIN_CAPACITY, MAX_CAPACITY);
+        this.udderCapacity= MIN_CAPACITY + new Random().nextInt(MAX_CAPACITY);
 
     }
 
