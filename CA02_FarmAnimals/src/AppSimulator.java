@@ -102,7 +102,7 @@ public class AppSimulator {
 
             }
             catch (InputMismatchException | NumberFormatException e) {
-                System.out.print("Invalid option - please enter number in range");
+                System.out.print("*** ERROR, ENTER A VALID OPTION ***");
             }
         }
 

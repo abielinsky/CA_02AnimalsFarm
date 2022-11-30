@@ -21,20 +21,19 @@ public class FarmSet {
     private void getFarmFile(String filename) {
 
         try {
-            Scanner sc = new Scanner(new File(filename));
-//           Delimiter: set the delimiter to be a comma character ","
-//                    or a carriage-return '\r', or a newline '\n'
-            sc.useDelimiter("[,\r\n]+");
+            Scanner INFO = new Scanner(new File(filename));
+// DELIMITER FOR COMA OR NEXT LINE
+            INFO.useDelimiter("[,\r\n]+");
 
-            while (sc.hasNext()) {
-                int id = sc.nextInt();
-                String owner = sc.next();
-                String postcode = sc.next();
-                String phone = sc.next();
+            while (INFO.hasNext()) {
+                int id = INFO.nextInt();
+                String owner = INFO.next();
+                String postcode = INFO.next();
+                String phone = INFO.next();
 
                 FarmList.add(new Farm(id, owner, postcode, phone));
             }
-            sc.close();
+            INFO.close();
 
         } catch (IOException e) {
             System.out.println("Exception thrown" + e);
