@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +28,11 @@ public class FarmSet {
 
             while (sc.hasNext()) {
                 int id = sc.nextInt();
-                String name = sc.next();
-                String email = sc.next();
+                String owner = sc.next();
+                String postcode = sc.next();
                 String phone = sc.next();
 
-                FarmList.add(new Farm(id, name, email, phone));
+                FarmList.add(new Farm(id, owner, postcode, phone));
             }
             sc.close();
 
@@ -39,6 +40,60 @@ public class FarmSet {
             System.out.println("Exception thrown" + e);
         }
     }
+
+
+    public void displayAllFarms() {
+        if (!FarmList.isEmpty()) {
+            System.out.println("--------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%-10s %-20s %-35s %-45s \n", "ID", " Owner", " PostCode", " Phone");
+            System.out.println("--------------------------------------------------------------------------------------------------------------");
+            for (Farm farm : this.FarmList) {
+                System.out.printf("%-10d %-20s %-35s %-45s \n", farm.getId(), farm.getOwner(), farm.getPostcode(), farm.getPhone());
+            }
+        } else {
+            System.out.println("\n *********** NO FARMS IN THE DATA *************");
+        }
+
+    }
+
+
+
+    public Farm addNewFarm(Farm farm) throws IOException {
+        boolean found = false;
+        for (Farm farm1 : FarmList) {
+            if (farm1.equals(farm)) {
+                found = true;
+                System.out.println("FARM WITH SAME DATA");
+                break;
+            }
+        }
+        if (found == false) {
+
+            FarmList.add(farm);
+
+            System.out.println("===========> FARM ADDED <=========");
+
+        }
+        return null;
+    }
+
+
+    //adding de information to the file
+    public void addFarmInFile() throws IOException {
+        FileWriter writer = new FileWriter("passengers.txt");
+        for (Farm farm : FarmList) {
+            String data = farm.getId() + "," + farm.getOwner() + "," + farm.getPostcode() + "," + farm.getPhone() ;
+            writer.append(data + "\n");
+
+        }
+        writer.close();
+        System.out.println("FARM IS SAVED IN FILE!!!");
+
+    }
+
+
+
+
 
 
 
