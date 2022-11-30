@@ -33,8 +33,12 @@ public class AppSimulator {
 
         final int FARMS = 1;
         final int SHEDS = 2;
-        final int EXTRA = 3;
-        final int EXIT = 4;
+        final int MILKING_MACHINE = 3;
+        final int MILK_TANK  = 4;
+        final int ANIMALS = 5;
+
+
+        final int EXIT = 6;
 
         Scanner input = new Scanner(System.in);
         int option = 0 ;
@@ -42,12 +46,14 @@ public class AppSimulator {
         do
         {
 
-            System.out.println("\n.:MENU:.");
-            System.out.println("1.  FARMS   ");
-            System.out.println("2.  SHEDS                     ");
-            System.out.println("3.                       ");
-
-            System.out.println("4.   End.                ");
+            System.out.println("********** MENU **********");
+            System.out.println("*   1.  FARMS            *");
+            System.out.println("*   2.  SHEDS            *");
+            System.out.println("*   3.  MILKING MACHINE  *");
+            System.out.println("*   4.  MILK TANK        *");
+            System.out.println("*   5.  ANIMALS          *");
+            System.out.println("*   6.  EXIT             *");
+            System.out.println("**************************");
             System.out.println("Option");
 
 
@@ -75,7 +81,7 @@ public class AppSimulator {
 
                     break;
 
-                case EXTRA: //
+                case MILKING_MACHINE: //
 
 
                     System.out.println(".........................");

@@ -80,7 +80,7 @@ public class FarmSet {
 
     //adding de information to the file
     public void addFarmInFile() throws IOException {
-        FileWriter writer = new FileWriter("passengers.txt");
+        FileWriter writer = new FileWriter("farm.txt");
         for (Farm farm : FarmList) {
             String data = farm.getId() + "," + farm.getOwner() + "," + farm.getPostcode() + "," + farm.getPhone() ;
             writer.append(data + "\n");
