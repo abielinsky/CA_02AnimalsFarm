@@ -17,12 +17,21 @@ public class Goat extends Animal implements IMilkable{
         this.milking = milking;
     }
 
-    public Goat(int id, String type, int age, double weight, double milking) {
+    public Goat(int id, String type, int age, double weight) {
         super(id, type, age, weight);
-        this.milking = milking;
         this.udderCapacity= MIN_CAPACITY + new Random().nextInt(MAX_CAPACITY);
 
     }
+
+
+
+    public String getName() {
+        return name;
+    }
+    public int getUdderCapacity() {
+        return udderCapacity;
+    }
+
 
 
 
@@ -71,11 +80,10 @@ public class Goat extends Animal implements IMilkable{
 
     @Override
     public double milk() {
-        double milk = udderBalance;
-        this.udderBalance=0;
-        this.udderCapacity= MIN_CAPACITY + new Random().nextInt(MAX_CAPACITY);
 
-        return milk;
+        double amount= 0 + new Random().nextInt(udderCapacity);
+
+        return amount;
     }
 
 
