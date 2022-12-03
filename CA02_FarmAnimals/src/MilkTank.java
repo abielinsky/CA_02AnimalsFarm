@@ -79,9 +79,9 @@ public class MilkTank {
 
         double amountAdded = amountPresented;
 
-        for (int i = 0; i < dairyCowArrayList.size(); i++) {
+    //    for (int i = 0; i < dairyCowArrayList.size(); i++) {
 
-            amountAdded += dairyCowArrayList.get(i).getUdderCapacity();
+          //  amountAdded += dairyCowArrayList.get(i).getUdderCapacity();
 
 
             if (amountInTank + amountPresented > capacity) { // amount will overfill the tank!
@@ -95,7 +95,7 @@ public class MilkTank {
             } else {  // case where the tank can take the full amount being added
                 amountInTank += amountPresented;
             }
-        }
+       // }
                 return amountAdded;
 
     }
