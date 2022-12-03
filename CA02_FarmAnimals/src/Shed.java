@@ -7,17 +7,26 @@ public class Shed {
 //    private final
     private MilkTank tank;
 
+    private  MilkTank milkTank;
+
 
     ArrayList <Animal> animalList;
     private MilkingMachine milkingMachine;
 
-    public Shed(int id, String name, MilkTank tank) {
+    public Shed(int id, String name) {
         this.id = id;
         this.name = name;
         this.tank = tank;
         this.animalList = new ArrayList<>();  //make it plural animals.. or animal|List
     }
 
+    public void addMilkTank(MilkTank milkTank){
+        this.milkTank= milkTank;
+    }
+
+    public MilkTank getTank() {
+        return tank;
+    }
 
     public MilkTank getMilktank(){
         return this.getMilktank();
@@ -27,6 +36,7 @@ public class Shed {
     public void installMilkingMachine(MilkingMachine milkingMachine){
         this.milkingMachine = milkingMachine;
         this.milkingMachine.setMilkTank(this.tank);
+
     }
 
 
@@ -58,15 +68,19 @@ public class Shed {
 
     }
 
+    public void addTank(MilkTank tank){
+        this.tank= tank;
+    }
 
     @Override
     public String toString() {
         return "Shed{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", tank=" + tank +
+                ", milkTank=" + milkTank +
                 '}';
     }
+
 
 
 }

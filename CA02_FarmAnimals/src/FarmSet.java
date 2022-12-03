@@ -29,7 +29,7 @@ public class FarmSet {
                 int id = INFO.nextInt();
                 String owner = INFO.next();
                 String postcode = INFO.next();
-                String phone = INFO.next();
+                int phone = INFO.nextInt();
 
                 FarmList.add(new Farm(id, owner, postcode, phone));
             }

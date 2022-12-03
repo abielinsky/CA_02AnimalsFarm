@@ -9,9 +9,41 @@ public class AppSimulator {
     FarmSet farmSet;
 
     public static void main(String[] args) throws IOException {
-        AppSimulator app = new AppSimulator();
-        app.start();
+
+        MilkingMachine milkingMachine = new MilkingMachine();
+
+        Farm FarmA = new Farm(2536, "Abiel", "D52F325", 25632563);
+        FarmA.addCow(new DairyCow(2536, "milkCow", 10, 50.20));
+        Shed shedA = new Shed(636, "SHED1" );
+        MilkTank tank1 = new MilkTank("TANK1", 2000);
+
+
+
+        FarmA.addShed(shedA);
+        shedA.installMilkingMachine(milkingMachine);
+        //FarmA.addMilkingMachine(milkingMachine);
+        shedA.addMilkTank(tank1);
+        shedA.milkAllAnimals();
+
+        System.out.println(FarmA);
+
+
+
+
+
+//        AppSimulator app = new AppSimulator();
+//        app.start();
+
+
+
     }
+
+
+
+
+
+
+
 
     public void start() throws IOException {
 
@@ -167,7 +199,7 @@ public class AppSimulator {
                         System.out.println("\nEnter the POSTCODE of Farm: ");
                         String farmPostcode = input.nextLine();
                         System.out.println("\nEnter the Phone of Farm: ");
-                        String farmPhone = input.nextLine();
+                        int farmPhone = input.nextInt();
 
                         Farm farm1 = new Farm(farmOwner, farmPostcode, farmPhone);
                         farmSet.addNewFarm(farm1);

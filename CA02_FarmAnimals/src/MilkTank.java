@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class MilkTank {
 
 
@@ -7,6 +9,14 @@ public class MilkTank {
     private double capacity;
     private double amountInTank;
 
+    private ArrayList<DairyCow> dairyCowArrayList;
+
+    private double tank =0;
+
+    public double getTank() {
+        return tank;
+    }
+
     MilkTank() {
         this.name ="unnamed tank";
         this.capacity = STANDARD_TANK_CAPACITY;
@@ -14,10 +24,12 @@ public class MilkTank {
     }
 
     MilkTank(String name, int capacity) {
-        this.name=name;
+        this.name = name;
         this.capacity = capacity;
-        this.amountInTank=0;
+        this.amountInTank = 0;
     }
+
+
 
     public String getName()
     {
@@ -67,20 +79,29 @@ public class MilkTank {
 
         double amountAdded = amountPresented;
 
-        if(amountInTank + amountPresented > capacity)  { // amount will overfill the tank!
-            amountAdded = capacity - amountInTank;
-            amountInTank = capacity;  // set tank as full
+        for (int i = 0; i < dairyCowArrayList.size(); i++) {
 
-            //TODO - should we raise a warning if the amount is greater than the
-            // remaining space in the tank.  Discuss!
-            // As this code currently stands, if tank is filled beyond capacity
-            // the overflow is just ignored (dumped).
+            amountAdded += dairyCowArrayList.get(i).getUdderCapacity();
+
+
+            if (amountInTank + amountPresented > capacity) { // amount will overfill the tank!
+                amountAdded = capacity - amountInTank;
+                amountInTank = capacity;  // set tank as full
+
+                //TODO - should we raise a warning if the amount is greater than the
+                // remaining space in the tank.  Discuss!
+                // As this code currently stands, if tank is filled beyond capacity
+                // the overflow is just ignored (dumped).
+            } else {  // case where the tank can take the full amount being added
+                amountInTank += amountPresented;
+            }
         }
-        else {  // case where the tank can take the full amount being added
-            amountInTank += amountPresented;
-        }
-        return amountAdded;
+                return amountAdded;
+
     }
+
+
+
 
     @Override
     public String toString() {
@@ -88,6 +109,7 @@ public class MilkTank {
                 "name='" + name + '\'' +
                 ", capacity=" + capacity +
                 ", amountInTank=" + amountInTank +
+
                 '}';
     }
 

@@ -28,9 +28,12 @@ public class MilkingMachine {
             this.milkTank.addMilkToTank(amount);
         }
 
-
-
     }
 
-
+    @Override
+    public String toString() {
+        return "MilkingMachine{" +
+              //  "milkTank=" + milkTank +
+                '}';
+    }
 }
