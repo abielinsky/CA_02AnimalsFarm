@@ -17,7 +17,7 @@ public class AppSimulator {
         Shed shedA = new Shed(636, "SHED1" );
         MilkTank tank1 = new MilkTank("TANK1", 2000);
 
-
+        tank1.addMilkToTank(1500);
 
         FarmA.addShed(shedA);
         shedA.installMilkingMachine(milkingMachine);
@@ -31,8 +31,8 @@ public class AppSimulator {
 
 
 
-//        AppSimulator app = new AppSimulator();
-//        app.start();
+        AppSimulator app = new AppSimulator();
+        app.start();
 
 
 
@@ -148,10 +148,6 @@ public class AppSimulator {
 
     private void MenuFarmDisplay() throws IOException {
 
-
-
-
-
         final int SHOW_FARMS = 1;
         final int ADD_FARM = 2;
         final int EXTRA = 3;
@@ -160,8 +156,6 @@ public class AppSimulator {
         Scanner input = new Scanner(System.in);
         int option = 0;
         do {
-           
-
 
                 System.out.println("\n.:MENU FARM:.");
                 System.out.println("1.  SHOW ALL FARMS   ");
@@ -211,7 +205,7 @@ public class AppSimulator {
 
                     case EXTRA: //
 
-
+                        System.out.println("-----");
                         System.out.println(".........................");
                         System.out.println("-----");
                         break;
@@ -225,7 +219,7 @@ public class AppSimulator {
                     default:
                         System.out.println("Enter a right option");
 
-
+                        break;
                 }
 
             }
@@ -238,15 +232,6 @@ public class AppSimulator {
 
 
     }
-
-
-
-
-
-
-
-
-
 
 
 //
