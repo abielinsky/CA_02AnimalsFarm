@@ -28,9 +28,6 @@ public class AppSimulator {
         System.out.println(FarmA);
 
 
-
-
-
         AppSimulator app = new AppSimulator();
         app.start();
 
@@ -39,20 +36,13 @@ public class AppSimulator {
     }
 
 
+    public void start() {
 
-
-
-
-
-
-    public void start() throws IOException {
-
-        System.out.println("\nFarm Simulator System for milky animals\n");
-
+        System.out.println("\nFarm Simulator System for milky animals");
         farmSet = new FarmSet("farm.txt");
 
         try {
-            displayMenu();        // User Interface - Menu
+            displayMenu();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,8 +50,6 @@ public class AppSimulator {
     }
 
     private void displayMenu() throws IOException {
-
-
 
         final int FARMS = 1;
         final int SHEDS = 2;
@@ -86,7 +74,7 @@ public class AppSimulator {
             System.out.println("|   5.  ANIMALS          |");
             System.out.println("|   6.  EXIT             |");
             System.out.println("**************************\n\n");
-            System.out.println("Option");
+           // System.out.println("Option");
 
 
             try
@@ -128,6 +116,7 @@ public class AppSimulator {
 
                 default:
                     System.out.println("Enter a right option");
+                    break;
 
             }
 
@@ -136,9 +125,9 @@ public class AppSimulator {
             catch (InputMismatchException | NumberFormatException e) {
                 System.out.print("*** ERROR, ENTER A VALID OPTION ***");
             }
-        }
+        }while (option != EXIT) ;
 
-            while (option != EXIT) ;
+
 
     }
 
@@ -146,31 +135,35 @@ public class AppSimulator {
 
 
 
-    private void MenuFarmDisplay() throws IOException {
+    private void MenuFarmDisplay()
+    {
+
+
 
         final int SHOW_FARMS = 1;
         final int ADD_FARM = 2;
-        final int EXTRA = 3;
+        final int EDIT_FARM = 3;
         final int EXIT = 4;
 
         Scanner input = new Scanner(System.in);
         int option = 0;
+
         do {
+            System.out.println("\n\n");
+            System.out.println("_____________ MENU ___________");
+            System.out.println("|   1.  SHOW ALL FARMS ==>   |");
+            System.out.println("|   2.  ADD A FARM     ==>   |");
+            System.out.println("|   3.  EDIT FARM      ==>   |");
+            System.out.println("|   4.  <=== BACK            |");
+            System.out.println("******************************");
+            System.out.println("    Option [1 - 4]");
 
-                System.out.println("\n.:MENU FARM:.");
-                System.out.println("1.  SHOW ALL FARMS   ");
-                System.out.println("2.  ADD A FARM       ");
-                System.out.println("3.                   ");
 
-                System.out.println("4.   End.                ");
-                System.out.println("Option");
-
-
-                 try {
+        try {
                 String usersInput = input.nextLine();
                 option = Integer.parseInt(usersInput);
 
-
+            Scanner keyboard = new Scanner(System.in);
                 switch (option) {
                     case SHOW_FARMS: //Checking data farm
 
@@ -193,45 +186,72 @@ public class AppSimulator {
                         System.out.println("\nEnter the POSTCODE of Farm: ");
                         String farmPostcode = input.nextLine();
                         System.out.println("\nEnter the Phone of Farm: ");
-                        int farmPhone = input.nextInt();
+                        int Phone = input.nextInt();
 
-                        Farm farm1 = new Farm(farmOwner, farmPostcode, farmPhone);
+
+                        Farm farm1 = new Farm(farmOwner, farmPostcode, Phone);
                         farmSet.addNewFarm(farm1);
 
 
-                        System.out.println("==================== Finishing Add ===================\n\n");
+
 
                         break;
 
-                    case EXTRA: //
+                    case EDIT_FARM: //
 
-                        System.out.println("-----");
-                        System.out.println(".........................");
-                        System.out.println("-----");
+                        System.out.println("");
+                        System.out.println("======================================================");
+                        System.out.println("============= Adding Farm to the Simulator ===========");
+
+                        farmSet.displayAllFarms();
+
+                        System.out.println("\nEnter FARM ID to edit: ");
+                        boolean isNum1 = false;
+                        while (isNum1 != true) {
+                            try {
+                                int farmID = keyboard.nextInt();
+                                isNum1 = true;
+                                farmSet.editFarm(farmID);
+                                break;
+                            } catch (InputMismatchException e) {
+                                keyboard.nextLine();
+                                System.out.println("Please enter a number for ID!!!");
+                            }
+                        }
+
                         break;
 
 
-                    case EXIT: //FINISH ALL PROCESS
+                    case EXIT:
                         farmSet.addFarmInFile();
                         System.out.println(" bye bye bye");
                         break;
 
                     default:
                         System.out.println("Enter a right option");
-
                         break;
+
                 }
 
-            }
-                catch (InputMismatchException | NumberFormatException e) {
-                    System.out.print("PLEASE ENTER A VALID OPTION");
-                }
-
+            }catch (InputMismatchException | NumberFormatException | IOException  e) {
+            //   System.out.print("PLEASE ENTER A VALID OPTION");
         }
-        while (option != EXIT) ;
+
+
+        }while (option != EXIT) ;
+
 
 
     }
+
+
+
+
+
+
+
+
+
 
 
 //

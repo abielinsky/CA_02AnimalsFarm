@@ -93,7 +93,36 @@ public class FarmSet {
 
 
 
+    public void editFarm(int id) {
 
+        Farm farm1 = findFarmByID(id);
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("\nEnter NAME of farm's OWNER: ");
+        String farmOwner = input.nextLine();
+        System.out.println("\nEnter the POSTCODE of Farm: ");
+        String farmPostcode = input.nextLine();
+        System.out.println("\nEnter the Phone of Farm: ");
+        int Phone = input.nextInt();
+
+        farm1.setOwner(farmOwner);
+        farm1.setPostcode(farmPostcode);
+        farm1.setPhone(Phone);
+
+        System.out.println(" ==========>  The FArm with ID " + id + " has been edited <===== ");
+
+    }
+
+    public Farm findFarmByID(int id) {
+
+        for (Farm farm : FarmList) {
+            if (farm.getId() == id) {
+                return farm;
+            }
+        }
+        System.out.println("\n=========>  There is no FArm with id " + id + " in the list!  <====== ");
+        return null;
+    }
 
 
 
