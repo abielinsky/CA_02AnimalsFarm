@@ -7,6 +7,10 @@ public class Farm {
     private String owner;
     private String postcode;
     private int phone;
+
+
+
+
     private  Shed shed;
 
     private ArrayList<Animal> animals;
