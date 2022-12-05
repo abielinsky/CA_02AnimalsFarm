@@ -105,4 +105,18 @@ public class ShedsSet {
     }
 
 
+    public void deleteShed(int id) {
+        for (Shed shed : ShedList) {
+
+            if (shed.getId() == id) {
+
+                ShedList.remove(shed);
+                System.out.println("The SHED with " + id + " DELETED");
+                break;
+            }
+        }
+    }
+
+
+
 }

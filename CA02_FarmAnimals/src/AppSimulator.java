@@ -212,7 +212,23 @@ public class AppSimulator {
 
                     case DELETE_SHED:
                         System.out.println("");
-                        System.out.println("=====  =================================================");
+                        System.out.println("=====================");
+                        shedSet.displayAllSheds();
+                        System.out.println("\nEnter shed ID to delete: ");
+                        boolean isID = false;
+                        while (isID != true) {
+                            try {
+                                int shedIDdel = keyboard.nextInt();
+                                isID = true;
+                                //shed deleted by id
+                                shedSet.deleteShed(shedIDdel);
+
+                                // break;
+                            } catch (InputMismatchException e) {
+                                keyboard.nextLine();
+                                System.out.println("INPUT A CORRECT ID!!!");
+                            }
+                        }
                         System.out.println("=====================");
                         break;
                     case DISPLAY_SHED:
