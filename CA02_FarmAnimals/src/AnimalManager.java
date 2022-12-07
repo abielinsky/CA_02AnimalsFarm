@@ -13,7 +13,6 @@ public class AnimalManager   {
 //    private final ArrayList<Shed> ShedList;
 //    private final ArrayList<Shed> ShedList;
 
-
     public AnimalManager(String fileName) {
         this.DairyCowList = new ArrayList<>();
         getDairyCowFile(fileName);
@@ -27,17 +26,14 @@ public class AnimalManager   {
             Scanner INFO = new Scanner(new File(filename));
 // DELIMITER FOR COMA OR NEXT LINE
             INFO.useDelimiter("[,\r\n]+");
-
             while (INFO.hasNext()) {
                 int id = INFO.nextInt();
                 String type = INFO.next();
                 int age = INFO.nextInt();
                 double weight = INFO.nextDouble();
-
                 DairyCowList.add(new DairyCow(id, type, age, weight));
             }
             INFO.close();
-
         } catch (IOException e) {
             System.out.println("Exception thrown" + e);
         }
@@ -56,26 +52,58 @@ public class AnimalManager   {
         }
     }
 
-
-    public Farm addNewDailyCow(DairyCow dailyCow) throws IOException {
+    public Farm addNewDailyCow(DairyCow dairyCow) throws IOException {
         boolean found = false;
-        for (DairyCow dailyCow1 : DairyCowList) {
-            if (dailyCow1.equals(dailyCow)) {
+        for (DairyCow dairyCow1 : DairyCowList) {
+            if (dairyCow1.equals(dairyCow)) {
                 found = true;
                 System.out.println("DAIRY COW WITH SAME DATA");
                 break;
             }
         }
         if (found == false) {
-
-            DairyCowList.add(dailyCow);
-
+            DairyCowList.add(dairyCow);
             System.out.println("===========> DAIRY COW ADDED <=========");
-
         }
         return null;
     }
 
+
+    //adding de information to the file
+    public void addFarmInFile() throws IOException {
+        FileWriter writer = new FileWriter("DairyCow.txt");
+        for (DairyCow dairyCow : DairyCowList) {
+            String data = dairyCow.getId() + "," + dairyCow.getType() + "," + dairyCow.getAge()+ "," + dairyCow.getWeight() ;
+            writer.append(data + "\n");
+        }
+        writer.close();
+        System.out.println("DAIRY COW IS SAVED IN FILE!!!");
+    }
+
+    public void editDairyCow(int id) {
+        DairyCow dairyCow1 = findDairyCowbyID(id);
+        Scanner input = new Scanner(System.in);
+        System.out.println("\nEnter NEW TYPE of ANIMAL: ");
+        String dairyCowType = input.nextLine();
+        System.out.println("\nEnter NEW AGE of ANIMAL: ");
+        int dairyCowAge = input.nextInt();
+        System.out.println("\nEnter NEW WEIGHT of ANIMAL: ");
+        int dairyCowWeight = input.nextInt();
+        dairyCow1.setType(dairyCowType);
+        dairyCow1.setAge(dairyCowAge);
+        dairyCow1.setWeight(dairyCowWeight);
+        System.out.println(" ==========>  The FArm with ID " + id + " has been edited <===== ");
+    }
+
+    public DairyCow findDairyCowbyID(int id) {
+        for (DairyCow dairyCow : DairyCowList) {
+            if (dairyCow.getId() == id) {
+                return dairyCow;
+            }
+        }
+        System.out.println("\n=========>  There is no FArm with id " + id + " in the list!  <====== ");
+        return null;
+    }
 
 
 
