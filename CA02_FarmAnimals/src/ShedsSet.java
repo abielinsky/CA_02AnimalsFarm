@@ -8,6 +8,7 @@ public class ShedsSet {
 
     private final ArrayList<Shed> ShedList;
 
+
     public ShedsSet(String fileName) {
         this.ShedList = new ArrayList<>();
         getShedsFile(fileName);

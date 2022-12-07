@@ -19,7 +19,7 @@ public class AppSimulator {
         Shed shedA = new Shed(636, "SHED1" );
         MilkTank tank1 = new MilkTank("TANK1", 2000);
 
-        tank1.addMilkToTank(1500);
+        tank1.addMilkToTank(500);
 
         FarmA.addShed(shedA);
         shedA.installMilkingMachine(milkingMachine);
@@ -391,6 +391,12 @@ public class AppSimulator {
 
 
     }
+
+
+
+
+
+
 
 
     private void MenuFarmDisplay()
