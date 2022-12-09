@@ -42,20 +42,20 @@ public class AnimalManager   {
     public void displayAllDailyCow() {
         if (!DairyCowList.isEmpty()) {
             System.out.println("--------------------------------------------------------------------------------------------------------------");
-            System.out.printf("%-5s %-10s %-10s %-20s %-25s  %-15s\n", "ID", " TYPE", " TYPE", "AGE", "WEIGHT", "CAPACITY");
+            System.out.printf("%-5s %-10s %-10s %-20s %-25s %-15s\n", "ID", " TYPE", " TYPE", "AGE", "WEIGHT", "CAPACITY");
             System.out.println("--------------------------------------------------------------------------------------------------------------");
             for (DairyCow dairyCowList : this.DairyCowList) {
-                System.out.printf("%-5s %-10s %-10s %-20s %-25s  %-15s \n", dairyCowList.getId(), dairyCowList.getName(), dairyCowList.getType(), dairyCowList.getAge(), dairyCowList.getWeight(), dairyCowList.getUdderCapacity());
+                System.out.printf("%-5s %-10s %-10s %-20s %-25s %-15s\n", dairyCowList.getId(), dairyCowList.getName(), dairyCowList.getType(), dairyCowList.getAge(), dairyCowList.getWeight(), dairyCowList.getUdderCapacity());
             }
         } else {
-            System.out.println("\n *********** NO DAILY COWS IN THE DATA *************");
+            System.out.println("\n *********** NO DAIRY COWS IN THE DATA *************");
         }
     }
 
     public Farm addNewDailyCow(DairyCow dairyCow) throws IOException {
         boolean found = false;
         for (DairyCow dairyCow1 : DairyCowList) {
-            if (dairyCow1.equals(dairyCow)) {
+            if (dairyCow.equals(dairyCow1)) {
                 found = true;
                 System.out.println("DAIRY COW WITH SAME DATA");
                 break;
@@ -70,15 +70,20 @@ public class AnimalManager   {
 
 
     //adding de information to the file
-    public void addAnimalInFile() throws IOException {
-        FileWriter writer = new FileWriter("DairyCow.txt");
+    public void addDairyCowInFile() throws IOException {
+        FileWriter writer = new FileWriter("dairyCow.txt");
         for (DairyCow dairyCow : DairyCowList) {
-            String data = dairyCow.getId() + "," + "," + dairyCow.getName()  + "," + dairyCow.getType() + "," + dairyCow.getAge()+ "," + dairyCow.getWeight() + "," +  dairyCow.getUdderCapacity() ;
+            String data = dairyCow.getId() +     "," +  dairyCow.getName()  + "," +
+                          dairyCow.getType() +   "," +  dairyCow.getAge()   + "," +
+                          dairyCow.getWeight() + "," +  dairyCow.getUdderCapacity() ;
             writer.append(data + "\n");
         }
         writer.close();
         System.out.println("DAIRY COW IS SAVED IN FILE!!!");
     }
+
+
+
 
     public void editDairyCow(int id) {
         DairyCow dairyCow1 = findDairyCowbyID(id);

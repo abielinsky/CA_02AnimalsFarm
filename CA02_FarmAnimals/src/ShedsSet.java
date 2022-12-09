@@ -63,11 +63,8 @@ public class ShedsSet {
             }
         }
         if (found == false) {
-
             ShedList.add(shed);
-
             System.out.println("===========> SHED ADDED <=========");
-
         }
         return null;
     }
@@ -79,11 +76,9 @@ public class ShedsSet {
         for (Shed shed : ShedList) {
             String data = shed.getId() + "," + shed.getName()  ;
             writer.append(data + "\n");
-
         }
         writer.close();
         System.out.println("FARM IS SAVED IN FILE!!!");
-
     }
 
     public void editShed(int id) {

@@ -19,7 +19,6 @@ public class FarmSet {
     }
 
     private void getFarmFile(String filename) {
-
         try {
             Scanner INFO = new Scanner(new File(filename));
 // DELIMITER FOR COMA OR NEXT LINE
@@ -30,7 +29,6 @@ public class FarmSet {
                 String owner = INFO.next();
                 String postcode = INFO.next();
                 int phone = INFO.nextInt();
-
                 FarmList.add(new Farm(id, owner, postcode, phone));
             }
             INFO.close();

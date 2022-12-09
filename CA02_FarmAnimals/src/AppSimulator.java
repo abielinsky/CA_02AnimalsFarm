@@ -43,7 +43,7 @@ public class AppSimulator {
         System.out.println("\nFarm Simulator System for milky animals");
         farmSet = new FarmSet("farm.txt");
         shedSet = new ShedsSet("shed.txt");
-        animalManager = new AnimalManager("animals.txt");
+        animalManager = new AnimalManager("dairyCow.txt");
         try {
             displayMenu();
         } catch (IOException e) {
@@ -122,7 +122,8 @@ public class AppSimulator {
 
 
                 case EXIT: //FINISH ALL PROCESS
-
+                    farmSet.addFarmInFile();
+                    animalManager.addDairyCowInFile();
                     System.out.println(" bye bye bye");
                     break;
 
@@ -134,7 +135,7 @@ public class AppSimulator {
 
 
             }
-            catch (InputMismatchException | NumberFormatException e) {
+            catch (InputMismatchException | NumberFormatException  | IOException  e) {
                 System.out.print("*** ERROR, ENTER A VALID OPTION ***");
             }
         }while (option != EXIT) ;
@@ -159,7 +160,7 @@ public class AppSimulator {
             System.out.println("________ *** SHEDS *** _______");
             System.out.println("|   1.  ADD          ==>   |");
             System.out.println("|   2.  EDIT         ==>   |");
-            System.out.println("|   3.  DELETE (DIE) ==>   |");
+            System.out.println("|   3.  DELETE       ==>   |");
             System.out.println("|   4.  DISPLAY ALL  ==>   |");
             System.out.println("|   5.  <========== BACK   |");
             System.out.println("******************************");
@@ -231,6 +232,7 @@ public class AppSimulator {
                         }
                         System.out.println("=====================");
                         break;
+
                     case DISPLAY_SHED:
                         System.out.println("");
                         System.out.println("======================================================");
@@ -238,11 +240,12 @@ public class AppSimulator {
                         shedSet.displayAllSheds();
                         System.out.println("==================== Farms Info ends =================\n\n");
                         break;
+
                     case BACK:
-                        farmSet.addFarmInFile();
                         shedSet.addShedInFile();
                         System.out.println(" GOING BACK ");
                         break;
+
                     default:
                         System.out.println("Enter a right option");
                         break;
@@ -277,46 +280,42 @@ public class AppSimulator {
             System.out.println("******************************");
             System.out.println("    Option [1 - 5]");
 
-            try {
-                String usersInput = input.nextLine();
-                option = Integer.parseInt(usersInput);
+            String usersInput = input.nextLine();
+            option = Integer.parseInt(usersInput);
 
-                Scanner keyboard = new Scanner(System.in);
-                switch (option) {
+            Scanner keyboard = new Scanner(System.in);
+            switch (option) {
 
-                    case DAIRY_COW: //Checking data farm
+                case DAIRY_COW: //Checking data farm
 
-                        System.out.println("");
-                        System.out.println("===================================================");
-                        MenuDairyCowDisplay();
-                        System.out.println("===========================================\n\n");
-                        break;
-                    case GOAT:
-                        System.out.println("");
-                        System.out.println("======================================================");
-                        System.out.println("=====================");
-                        break;
-                    case BEEF_COW:
-                        System.out.println("");
-                        System.out.println("=====  =================================================");
-                        System.out.println("=====================");
-                        break;
-                    case SHEEP:
-                        System.out.println("");
-                        System.out.println("======================================================");
-                        System.out.println("============= ===========");
-                        break;
-                    case BACK:
-                        farmSet.addFarmInFile();
-                        animalManager.addAnimalInFile();
-                        System.out.println(" GOING BACK ");
-                        break;
-                    default:
-                        System.out.println("Enter a right option");
-                        break;
-                }
-            }catch (InputMismatchException | NumberFormatException | IOException  e) {
-                //   System.out.print("PLEASE ENTER A VALID OPTION");
+                    System.out.println("");
+                    System.out.println("===================================================");
+                    MenuDairyCowDisplay();
+                    System.out.println("===========================================\n\n");
+                    break;
+                case GOAT:
+                    System.out.println("");
+                    System.out.println("======================================================");
+                    System.out.println("=====================");
+                    break;
+                case BEEF_COW:
+                    System.out.println("");
+                    System.out.println("=====  =================================================");
+                    System.out.println("=====================");
+                    break;
+                case SHEEP:
+                    System.out.println("");
+                    System.out.println("======================================================");
+                    System.out.println("============= ===========");
+                    break;
+                case BACK:
+
+
+                    System.out.println(" GOING BACK ");
+                    break;
+                default:
+                    System.out.println("Enter a right option");
+                    break;
             }
         }while (option != BACK) ;
     }
@@ -356,11 +355,11 @@ public class AppSimulator {
                         System.out.println("===============  MENU DAIRY COW============");
 
 
-                        System.out.println("\nEnter TYPE of ANIMAL: ");
+                        System.out.println("\nEnter TYPE of DAIRY COW: ");
                         String dairyCowType = input.nextLine();
-                        System.out.println("\nEnter AGE of ANIMAL: ");
+                        System.out.println("\nEnter AGE of DAIRY COW: ");
                         int dairyCowAge = input.nextInt();
-                        System.out.println("\nEnter WEIGHT of ANIMAL: ");
+                        System.out.println("\nEnter WEIGHT of DAIRY COW: ");
                         double dairyCowWeight = input.nextDouble();
 
                         DairyCow dairyCow1 = new DairyCow(dairyCowType, dairyCowAge, dairyCowWeight );
@@ -397,16 +396,19 @@ public class AppSimulator {
                     case DISPLAY_ALL_DAIRY_COW:
                         System.out.println("");
                         System.out.println("===========================================================");
-                        System.out.println("================== Displaying Data of Farms ===============");
+                        System.out.println("================== Displaying Data of DAIRY COWS ===============");
                         animalManager.displayAllDailyCow();
                         System.out.println("======================= Farms Info ends ===================\n\n");
                         System.out.println("===========================================================");
+
                         break;
+
                     case BACK:
-                        animalManager.addAnimalInFile();
-                        System.out.println(" GOING BACK ");
+
+                        animalManager.addDairyCowInFile();
                         System.out.println(" GOING BACK ");
                         break;
+
                     default:
                         System.out.println("Enter a right option");
                         break;
