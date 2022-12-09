@@ -9,9 +9,9 @@ import java.util.Scanner;
 public class AnimalManager   {
 
     private final ArrayList<DairyCow> DairyCowList;
-//    private final ArrayList<Shed> ShedList;
-//    private final ArrayList<Shed> ShedList;
-//    private final ArrayList<Shed> ShedList;
+//    private final ArrayList<Goat> GoatList;
+//    private final ArrayList<BeefCow> BeefCowList;
+//    private final ArrayList<Sheep> SheepList;
 
     public AnimalManager(String fileName) {
         this.DairyCowList = new ArrayList<>();
@@ -31,7 +31,7 @@ public class AnimalManager   {
                 String type = INFO.next();
                 int age = INFO.nextInt();
                 double weight = INFO.nextDouble();
-                DairyCowList.add(new DairyCow(id, type, age, weight));
+                DairyCowList.add(new DairyCow(type, age, weight));
             }
             INFO.close();
         } catch (IOException e) {
@@ -42,10 +42,10 @@ public class AnimalManager   {
     public void displayAllDailyCow() {
         if (!DairyCowList.isEmpty()) {
             System.out.println("--------------------------------------------------------------------------------------------------------------");
-            System.out.printf("%-10s %-20s %-35s %-45s \n", "ID", " TYPE", "AGE", "WEIGHT");
+            System.out.printf("%-5s %-10s %-10s %-20s %-25s  %-15s\n", "ID", " TYPE", " TYPE", "AGE", "WEIGHT", "CAPACITY");
             System.out.println("--------------------------------------------------------------------------------------------------------------");
             for (DairyCow dairyCowList : this.DairyCowList) {
-                System.out.printf("%-10d %-20s %-35s %-45s \n", dairyCowList.getId(), dairyCowList.getType(), dairyCowList.getAge(), dairyCowList.getWeight());
+                System.out.printf("%-5s %-10s %-10s %-20s %-25s  %-15s \n", dairyCowList.getId(), dairyCowList.getName(), dairyCowList.getType(), dairyCowList.getAge(), dairyCowList.getWeight(), dairyCowList.getUdderCapacity());
             }
         } else {
             System.out.println("\n *********** NO DAILY COWS IN THE DATA *************");
@@ -70,10 +70,10 @@ public class AnimalManager   {
 
 
     //adding de information to the file
-    public void addFarmInFile() throws IOException {
+    public void addAnimalInFile() throws IOException {
         FileWriter writer = new FileWriter("DairyCow.txt");
         for (DairyCow dairyCow : DairyCowList) {
-            String data = dairyCow.getId() + "," + dairyCow.getType() + "," + dairyCow.getAge()+ "," + dairyCow.getWeight() ;
+            String data = dairyCow.getId() + "," + "," + dairyCow.getName()  + "," + dairyCow.getType() + "," + dairyCow.getAge()+ "," + dairyCow.getWeight() + "," +  dairyCow.getUdderCapacity() ;
             writer.append(data + "\n");
         }
         writer.close();
@@ -92,7 +92,7 @@ public class AnimalManager   {
         dairyCow1.setType(dairyCowType);
         dairyCow1.setAge(dairyCowAge);
         dairyCow1.setWeight(dairyCowWeight);
-        System.out.println(" ==========>  The FArm with ID " + id + " has been edited <===== ");
+        System.out.println(" ==========>  The DAIRY COW with ID " + id + " has been edited <===== ");
     }
 
     public DairyCow findDairyCowbyID(int id) {
@@ -104,6 +104,25 @@ public class AnimalManager   {
         System.out.println("\n=========>  There is no FArm with id " + id + " in the list!  <====== ");
         return null;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

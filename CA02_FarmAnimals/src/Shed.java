@@ -23,10 +23,6 @@ public class Shed {
         this.name = name;
     }
 
-
-
-
-
     public Shed(int id, String name) {
         this.id = id;
         this.name = name;
@@ -57,21 +53,16 @@ public class Shed {
 
     public void milkAllAnimals(){
 
-
             try {
                for (Animal animal : animalList)
                     if(animal instanceof IMilkable){   // introduce this to see result
 
                         this.milkingMachine.milk((IMilkable)animal);
-
-
                     }
             }
             catch (Exception e){
                 throw new IllegalStateException("The Milking machine has not been installed");
             }
-
-
 
     }
 
