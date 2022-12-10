@@ -130,7 +130,7 @@ public class AppSimulator {
                     break;
 
             }
-            break;
+
 
             }
             catch (InputMismatchException | NumberFormatException  | IOException  e) {
