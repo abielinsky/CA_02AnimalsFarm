@@ -9,12 +9,12 @@ public class Sheep extends Animal implements Serializable {
 
 
     private final String[] NAMES = new String[]{
-            "beef1", "beef2", "beef3", "beef4", "beef5",
-            "beef6", "beef7", "beef8", "beef9", "beef10",
-            "beef11", "beef12", "beef13", "beef14", "beef15",
-            "beef16", "beef17", "beef18", "beef19", "beef20",
-            "beef21", "beef22", "beef23", "beef24", "beef25",
-            "beef26", "beef27", "beef28", "beef29", "beef30",};
+            "Sheep1", "Sheep2", "Sheep3", "Sheep4", "Sheep5",
+            "Sheep6", "Sheep7", "Sheep8", "Sheep9", "Sheep10",
+            "Sheep11", "Sheep12", "Sheep13", "Sheep14", "Sheep15",
+            "Sheep16", "Sheep17", "Sheep18", "Sheep19", "Sheep20",
+            "Sheep21", "Sheep22", "Sheep23", "Sheep24", "Sheep25",
+            "Sheep26", "Sheep27", "Sheep28", "Sheep29", "Sheep30",};
     String nameSheep = NAMES[new Random().nextInt(NAMES.length) ];
 
 

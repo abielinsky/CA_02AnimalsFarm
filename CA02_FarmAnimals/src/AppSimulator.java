@@ -49,7 +49,7 @@ public class AppSimulator {
         }
 
 
-        animalManager.saveAnimalToFile("animals.txt");
+      //  animalManager.saveAnimalToFile("animals.txt");
 
     }
 
@@ -274,14 +274,14 @@ public class AppSimulator {
 
         do {
             System.out.println("\n\n");
-            System.out.println("__________ ANIMALS MENU _________");
-            System.out.println("|   1.  DAIRY_COW      ==>   |");
-            System.out.println("|   2.  GOAT           ==>   |");
-            System.out.println("|   3.  BEEF_COW       ==>   |");
-            System.out.println("|   4.  SHEEP          ==>   |");
-            System.out.println("|   5.  <============ BACK   |");
-            System.out.println("|   6.  <============ BACK   |");
-            System.out.println("******************************");
+            System.out.println("__________ ANIMALS MENU ____________");
+            System.out.println("|   1.  DAIRY_COW         ==>   |");
+            System.out.println("|   2.  GOAT              ==>   |");
+            System.out.println("|   3.  BEEF_COW          ==>   |");
+            System.out.println("|   4.  SHEEP             ==>   |");
+            System.out.println("|   5.  <== DISPLAY ALL   ==>   |");
+            System.out.println("|   6.  <============ BACK      |");
+            System.out.println("*********************************");
             System.out.println("    Option [1 - 5]");
 
             String usersInput = input.nextLine();
@@ -315,16 +315,13 @@ public class AppSimulator {
 
                 case DISPLAY:
                     System.out.println("");
-                    System.out.println("======================================================");
+                    System.out.println("===========================================================================================================");
                     animalManager.displayAllAnimals();
-                    System.out.println("============= =============");
+                    System.out.println("===========================================================================================================");
                     break;
 
-
-
                 case BACK:
-
-
+                    animalManager.saveAnimalToFile("animals.txt");
                     System.out.println(" GOING BACK ");
                     break;
                 default:

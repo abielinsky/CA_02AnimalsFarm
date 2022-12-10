@@ -16,6 +16,8 @@ public class AnimalManager   {
         loadAnimalFromFile(fileName);
     }
 
+
+
     private void loadAnimalFromFile(String fileName) {
 
         int udderCapacity = 0;
@@ -85,7 +87,7 @@ public class AnimalManager   {
 
                     (a instanceof DairyCow ? ((DairyCow) a).getName(): "-" ),
                     (a instanceof DairyCow ? ((DairyCow) a).getUdderCapacity(): "-"),
-                    (a instanceof BeefCow ? ((BeefCow) a).getName(): ""),
+                    (a instanceof BeefCow ? ((BeefCow) a).getName(): "-"),
                     (a instanceof BeefCow ? ((BeefCow) a).getPedigree(): "-")
             );
 
