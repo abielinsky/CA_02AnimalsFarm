@@ -18,6 +18,7 @@ public class MilkingMachineSet {
 
 
     private void getMilkingMachineFile(String filename) {
+
         try {
             Scanner INFO = new Scanner(new File(filename));
 // DELIMITER FOR COMA OR NEXT LINE
@@ -25,10 +26,9 @@ public class MilkingMachineSet {
 
             while (INFO.hasNext()) {
                 int id = INFO.nextInt();
-                String owner = INFO.next();
-                String postcode = INFO.next();
-                int phone = INFO.nextInt();
-                MilkingMachineList.add(new MilkingMachine());
+                String name = INFO.next();
+
+                MilkingMachineList.add(new MilkingMachine(id, name));
             }
             INFO.close();
 

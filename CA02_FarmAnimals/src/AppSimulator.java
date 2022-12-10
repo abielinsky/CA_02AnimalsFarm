@@ -14,8 +14,7 @@ public class AppSimulator {
 
     public static void main(String[] args) throws IOException {
 
-        MilkingMachine milkingMachine = new MilkingMachine();
-
+        MilkingMachine milkingMachine = new MilkingMachine(2020, "superTurbo");
         Farm FarmA = new Farm(2536, "Abiel", "D52F325", 25632563);
         FarmA.addCow(new DairyCow("milkCow", 10, 50.20));
         Shed shedA = new Shed(636, "SHED1" );
@@ -57,8 +56,8 @@ public class AppSimulator {
         final int FARMS = 1;
         final int SHEDS = 2;
         final int ANIMALS = 3;
-        final int MILK_TANK  = 4;
-        final int MILKING_MACHINE = 5;
+        final int MILKING_MACHINE = 4;
+        final int MILK_TANK  = 5;
         final int EXIT = 6;
         Scanner input = new Scanner(System.in);
         int option = 0 ;
@@ -464,52 +463,52 @@ public class AppSimulator {
                         System.out.println("");
                         System.out.println("=====================  MENU SHEDS ====================");
                         System.out.println("======================================================");
-                        System.out.println("============= Adding Sheds to the Simulator ===========");
-                        System.out.println("\nEnter NAME of SHED: ");
+                        System.out.println("======= INSTALLING MILK MACHINE to the Simulator =====");
+                        System.out.println("\nEnter NAME of MILK MACHINE: ");
                         String NameMachine = input.nextLine();
                         MilkingMachine milkingMachine1 = new MilkingMachine(NameMachine);
                         milkingMachineSet.installMachine(milkingMachine1);
                         System.out.println("===========================================\n\n");
                         break;
                     case EDIT_MACHINE:
-//                        System.out.println("");
-//                        System.out.println("======================================================");
-//                        System.out.println("============= Editing SHED to the Simulator ===========");
-//                        shedSet.displayAllSheds();
-//                        System.out.println("\nEnter SHED ID to edit: ");
-//                        boolean isNum1 = false;
-//                        while (isNum1 != true) {
-//                            try {
-//                                int shedID = keyboard.nextInt();
-//                                isNum1 = true;
-//                                shedSet.editShed(shedID);
-//                                break;
-//                            } catch (InputMismatchException e) {
-//                                keyboard.nextLine();
-//                                System.out.println("Please enter a number for ID!!!");
-//                            }
-//                        }
+                        System.out.println("");
+                        System.out.println("======================================================");
+                        System.out.println("==================== Editing MACHINE =================");
+                        milkingMachineSet.displayAllMilkMachines();
+                        System.out.println("\nEnter MACHINE ID to edit: ");
+                        boolean isNum1 = false;
+                        while (isNum1 != true) {
+                            try {
+                                int machineID = keyboard.nextInt();
+                                isNum1 = true;
+                                milkingMachineSet.editMachine(machineID);
+                                break;
+                            } catch (InputMismatchException e) {
+                                keyboard.nextLine();
+                                System.out.println("Please enter a number for ID!!!");
+                            }
+                        }
                         break;
                     case DELETE_MACHINE:
-//                        System.out.println("");
-//                        System.out.println("=====================");
-//                        shedSet.displayAllSheds();
-//                        System.out.println("\nEnter shed ID to delete: ");
-//                        boolean isID = false;
-//                        while (isID != true) {
-//                            try {
-//                                int shedIDdel = keyboard.nextInt();
-//                                isID = true;
-//                                //shed deleted by id
-//                                shedSet.deleteShed(shedIDdel);
-//
-//                                // break;
-//                            } catch (InputMismatchException e) {
-//                                keyboard.nextLine();
-//                                System.out.println("INPUT A CORRECT ID!!!");
-//                            }
-//                        }
-//                        System.out.println("=====================");
+                        System.out.println("");
+                        System.out.println("========================================================");
+                        milkingMachineSet.displayAllMilkMachines();
+                        System.out.println("\nEnter MACHINE ID to delete: ");
+                        boolean isID = false;
+                        while (isID != true) {
+                            try {
+                                int machineIDdel = keyboard.nextInt();
+                                isID = true;
+                                //shed deleted by id
+                                milkingMachineSet.deleteMachine(machineIDdel);
+
+                                // break;
+                            } catch (InputMismatchException e) {
+                                keyboard.nextLine();
+                                System.out.println("INPUT A CORRECT ID!!!");
+                            }
+                        }
+
                         break;
                     case DISPLAY_MACHINE:
                         System.out.println("");
