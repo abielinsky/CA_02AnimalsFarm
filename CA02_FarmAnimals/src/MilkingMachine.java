@@ -1,8 +1,14 @@
 public class MilkingMachine {
 
+    private int id;
+    private String NameMachine;
     private MilkTank milkTank;
 
     // CHECK THIS METHOD
+
+    public MilkingMachine(String nameMachine) {
+        NameMachine = nameMachine;
+    }
 
     public MilkingMachine(){
 
@@ -28,6 +34,23 @@ public class MilkingMachine {
             this.milkTank.addMilkToTank(amount);
         }
 
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNameMachine() {
+        return NameMachine;
+    }
+
+    public void setNameMachine(String nameMachine) {
+        NameMachine = nameMachine;
     }
 
     @Override

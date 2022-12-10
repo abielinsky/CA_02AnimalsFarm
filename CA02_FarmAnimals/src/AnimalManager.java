@@ -136,7 +136,38 @@ public class AnimalManager   {
     }
 
 
+    public void editDairyCow(int id) {
 
+        Animal animal = findAnimalByID(id);
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("\nEnter new age of the animal: ");
+        int newAge = input.nextInt();
+        System.out.println("\nEnter the new weight: ");
+        double NewWeight = input.nextDouble();
+
+        animal.setAge(newAge);
+        animal.setWeight(NewWeight);
+
+        System.out.println(" ==========>  The FArm with ID " + id + " has been edited <===== ");
+
+    }
+
+    public Animal findAnimalByID(int id) {
+        for (Animal animal : animalList) {
+            if (animal.getId() == id) {
+                return animal;
+            }
+        }
+        System.out.println("\n=========>  There is no ANIMAL with id " + id + " in the list!  <====== ");
+        return null;
+    }
+
+
+    public void deleteAnimalById(int id) {
+        animalList.removeIf(b -> b.equals(findAnimalByID(id)));
+    }
 
 
 
