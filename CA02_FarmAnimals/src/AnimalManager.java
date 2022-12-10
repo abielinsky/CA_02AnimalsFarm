@@ -117,6 +117,27 @@ public class AnimalManager   {
     }
 
 
+    public AnimalManager addNewDairyCow(Animal animal)  {
+            animalList.add(animal);
+            System.out.println("===========> ANIMAL ADDED <=========");
+        return null;
+    }
+
+    public void addDairyCowInFile() throws IOException {
+        FileWriter writer = new FileWriter("animals.txt");
+        for (Animal animal : animalList) {
+            String data = animal.getId() + "," + animal.getType() + "," + animal.getAge() + "," + animal.getWeight() ;
+            writer.append(data + "\n");
+
+        }
+        writer.close();
+        System.out.println("DAIRY COW IS SAVED IN FILE!!!");
+
+    }
+
+
+
+
 
 
 }

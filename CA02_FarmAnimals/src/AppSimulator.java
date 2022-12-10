@@ -48,8 +48,7 @@ public class AppSimulator {
             e.printStackTrace();
         }
 
-
-      //  animalManager.saveAnimalToFile("animals.txt");
+        animalManager.saveAnimalToFile("animals.txt");
 
     }
 
@@ -60,8 +59,6 @@ public class AppSimulator {
         final int ANIMALS = 3;
         final int MILK_TANK  = 4;
         final int MILKING_MACHINE = 5;
-
-
         final int EXIT = 6;
 
         Scanner input = new Scanner(System.in);
@@ -124,8 +121,8 @@ public class AppSimulator {
 
                 case EXIT: //FINISH ALL PROCESS
                     farmSet.addFarmInFile();
-//                    animalManager.addDairyCowInFile();
-                    System.out.println(" bye bye bye");
+                    animalManager.addDairyCowInFile();
+                    System.out.println(" bye finish all process");
                     break;
 
                 default:
@@ -133,11 +130,11 @@ public class AppSimulator {
                     break;
 
             }
-
+            break;
 
             }
             catch (InputMismatchException | NumberFormatException  | IOException  e) {
-                System.out.print("*** ERROR, ENTER A VALID OPTION ***");
+//                System.out.print("*** ERROR, ENTER A VALID OPTION ***");
             }
         }while (option != EXIT) ;
 
@@ -243,6 +240,7 @@ public class AppSimulator {
                         break;
 
                     case BACK:
+                        animalManager.addDairyCowInFile();
                         shedSet.addShedInFile();
                         System.out.println(" GOING BACK ");
                         break;
@@ -259,7 +257,7 @@ public class AppSimulator {
 
     }
 
-    private void MenuAnimalsDisplay() {
+    private void MenuAnimalsDisplay()  {
 
         final int DAIRY_COW = 1;
         final int GOAT = 2;
@@ -274,62 +272,69 @@ public class AppSimulator {
 
         do {
             System.out.println("\n\n");
-            System.out.println("__________ ANIMALS MENU ____________");
-            System.out.println("|   1.  DAIRY_COW         ==>   |");
+            System.out.println("__________ ANIMALS MENU __________________");
+            System.out.println("|   1.  DAIRY COW         ==>   |");
             System.out.println("|   2.  GOAT              ==>   |");
             System.out.println("|   3.  BEEF_COW          ==>   |");
             System.out.println("|   4.  SHEEP             ==>   |");
-            System.out.println("|   5.  <== DISPLAY ALL   ==>   |");
-            System.out.println("|   6.  <============ BACK      |");
-            System.out.println("*********************************");
-            System.out.println("    Option [1 - 5]");
+            System.out.println("|   5.  DISPLAY ALL           ==>   |");
+            System.out.println("|   6.  <================== BACK    |");
+            System.out.println("******************************************");
+            System.out.println("    Option [1 - 6]");
 
-            String usersInput = input.nextLine();
-            option = Integer.parseInt(usersInput);
 
-            Scanner keyboard = new Scanner(System.in);
-            switch (option) {
+                try
+                {
+                String usersInput = input.nextLine();
+                option = Integer.parseInt(usersInput);
 
-                case DAIRY_COW: //Checking data farm
+                        switch (option)
+                        {
+                            case DAIRY_COW: //Checking data farm
+                                System.out.println("=============== DAIRY COW============");
+                                MenuDairyCowDisplay();
+                                System.out.println("===========================================\n\n");
+                                break;
+                            case GOAT:
+                                System.out.println("");
+                                System.out.println("======================================================");
+                                System.out.println("=====================");
+                                break;
+                            case BEEF_COW:
+                                System.out.println("");
+                                System.out.println("=====  =================================================");
+                                System.out.println("=====================");
+                                break;
+                            case SHEEP:
+                                System.out.println("");
+                                System.out.println("======================================================");
+                                System.out.println("============= ===========");
+                                break;
 
-                    System.out.println("");
-                    System.out.println("===================================================");
-                    MenuDairyCowDisplay();
-                    System.out.println("===========================================\n\n");
-                    break;
-                case GOAT:
-                    System.out.println("");
-                    System.out.println("======================================================");
-                    System.out.println("=====================");
-                    break;
-                case BEEF_COW:
-                    System.out.println("");
-                    System.out.println("=====  =================================================");
-                    System.out.println("=====================");
-                    break;
-                case SHEEP:
-                    System.out.println("");
-                    System.out.println("======================================================");
-                    System.out.println("============= ===========");
-                    break;
+                            case DISPLAY:
+                                System.out.println("");
+                                System.out.println("===========================================================================================================");
+                                animalManager.displayAllAnimals();
+                                System.out.println("===========================================================================================================");
+                                break;
 
-                case DISPLAY:
-                    System.out.println("");
-                    System.out.println("===========================================================================================================");
-                    animalManager.displayAllAnimals();
-                    System.out.println("===========================================================================================================");
-                    break;
+                            case BACK:
 
-                case BACK:
-                    animalManager.saveAnimalToFile("animals.txt");
-                    System.out.println(" GOING BACK ");
-                    break;
-                default:
-                    System.out.println("Enter a right option");
-                    break;
-            }
+                                System.out.println(" GOING BACK ");
+                                break;
+                            default:
+                                System.out.println("Enter a right option");
+                                break;
+                        }
+                  } catch (InputMismatchException | NumberFormatException e)
+                    {
+                        System.out.print("Invalid input");
+                    }
         }while (option != BACK) ;
     }
+
+
+
 
     private void MenuDairyCowDisplay() {
 
@@ -360,25 +365,21 @@ public class AppSimulator {
                 Scanner keyboard = new Scanner(System.in);
                 switch (option) {
 
-                    case ADD_DAIRY_COW: //Checking data farm
+                    case ADD_DAIRY_COW:
 
-//                        System.out.println("");
-//                        System.out.println("===============  MENU DAIRY COW============");
-//
-//
-//                        System.out.println("\nEnter TYPE of DAIRY COW: ");
-//                        String dairyCowType = input.nextLine();
-//                        System.out.println("\nEnter AGE of DAIRY COW: ");
-//                        int dairyCowAge = input.nextInt();
-//                        System.out.println("\nEnter WEIGHT of DAIRY COW: ");
-//                        double dairyCowWeight = input.nextDouble();
-//
-//                        DairyCow dairyCow1 = new DairyCow(dairyCowType, dairyCowAge, dairyCowWeight );
-//                        animalManager.addNewDailyCow(dairyCow1);
+                        System.out.println("\nEnter TYPE of DAIRY COW: ");
+                        String dairyCowType = input.nextLine();
+                        System.out.println("\nEnter AGE of DAIRY COW: ");
+                        int dairyCowAge = input.nextInt();
+                        System.out.println("\nEnter WEIGHT of DAIRY COW: ");
+                        double dairyCowWeight = input.nextDouble();
 
+                        Animal animal = new DairyCow(dairyCowType, dairyCowAge, dairyCowWeight );
+                        animalManager.addNewDairyCow(animal);
 
                         System.out.println("===========================================\n\n");
                         break;
+
                     case EDIT_DAIRY_COW:
 //                        System.out.println("");
 //                        System.out.println("======================================================");
@@ -399,11 +400,13 @@ public class AppSimulator {
 
                         System.out.println("========================================================");
                         break;
+
                     case DELETE_DAIRY_COW:
                         System.out.println("");
                         System.out.println("=====  =================================================");
                         System.out.println("=====================");
                         break;
+
                     case DISPLAY_ALL_DAIRY_COW:
 //                        System.out.println("");
 //                        System.out.println("===========================================================");
