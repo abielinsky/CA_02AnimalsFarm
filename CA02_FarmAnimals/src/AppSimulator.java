@@ -14,17 +14,20 @@ public class AppSimulator {
 
     public static void main(String[] args) throws IOException {
 
-        MilkingMachine milkingMachine = new MilkingMachine(2020, "superTurbo");
+
         Farm FarmA = new Farm(2536, "Abiel", "D52F325", 25632563);
-        FarmA.addCow(new DairyCow("milkCow", 10, 50.20));
-        Shed shedA = new Shed(636, "SHED1" );
+        FarmA.addCow(new DairyCow(5252, "DairyCow", 10, 50.20, "", 60));
+        MilkingMachine milkingMachine = new MilkingMachine(2020, "superTurbo");
         MilkTank tank1 = new MilkTank(3663,"TANK1", 2000);
+
+        Shed shedA = new Shed(636, "SHED1" );
+
 
         tank1.addMilkToTank(500);
 
         FarmA.addShed(shedA);
-        shedA.installMilkingMachine(milkingMachine);
-        //FarmA.addMilkingMachine(milkingMachine);
+//        shedA.installMilkingMachine(milkingMachine);
+        FarmA.addMilkingMachine(milkingMachine);
         shedA.addMilkTank(tank1);
         shedA.milkAllAnimals();
 
@@ -35,7 +38,6 @@ public class AppSimulator {
 
     }
 
-
     public void start() {
         System.out.println("\nFarm Simulator System for milky animals");
         farmSet = new FarmSet("farm.txt");
@@ -43,14 +45,12 @@ public class AppSimulator {
         animalManager = new AnimalManager("animals.txt");
         milkingMachineSet = new MilkingMachineSet("milkingMachine.txt");
         milkTankSet = new MilkTankSet("milktanks.txt");
-
         try {
             displayMenu();
         } catch (IOException e) {
             e.printStackTrace();
         }
         animalManager.saveAnimalToFile("animals.txt");
-
     }
 
     private void displayMenu() throws IOException {
@@ -94,7 +94,7 @@ public class AppSimulator {
                     MenuMilkingMachine();
                     break;
                 case MILK_TANK: //
-
+                    MenuMilkTank();
                     break;
                 case EXIT: //FINISH ALL PROCESS
                     farmSet.addFarmInFile();
@@ -292,19 +292,21 @@ public class AppSimulator {
         final int SHEEP = 4;
         final int DISPLAY = 5;
         final int DELETE = 6;
-        final int BACK = 7;
+        final int AVERAGE_MILK = 7;
+        final int BACK = 9;
         Scanner input = new Scanner(System.in);
         int option = 0;
         do {
             System.out.println("\n\n");
             System.out.println("__________ ANIMALS MENU __________________");
             System.out.println("|   1.  DAIRY COW             ==>   |");
-            System.out.println("|   2.  GOAT                  ==>   |");
-            System.out.println("|   3.  BEEF_COW              ==>   |");
-            System.out.println("|   4.  SHEEP                 ==>   |");
+//            System.out.println("|   2.  GOAT                  ==>   |");
+//            System.out.println("|   3.  BEEF_COW              ==>   |");
+//            System.out.println("|   4.  SHEEP                 ==>   |");
             System.out.println("|   5.  DISPLAY ALL           ==>   |");
             System.out.println("|   6.  DELETE                ==>   |");
-            System.out.println("|   7.  <================== BACK    |");
+            System.out.println("|   7.  AVERAGE MILK          ==>   |");
+            System.out.println("|   9.  <================== BACK    |");
             System.out.println("******************************************");
             System.out.println("    Option [1 - 6]");
                 try
@@ -356,7 +358,6 @@ public class AppSimulator {
         }while (option != BACK) ;
     }
 
-
     private void MenuDairyCowDisplay() {
         final int ADD_DAIRY_COW = 1;
         final int EDIT_DAIRY_COW = 2;
@@ -383,7 +384,10 @@ public class AppSimulator {
                         int dairyCowAge = input.nextInt();
                         System.out.println("\nEnter WEIGHT of DAIRY COW: ");
                         double dairyCowWeight = input.nextDouble();
-                        Animal animal = new DairyCow(dairyCowType, dairyCowAge, dairyCowWeight );
+                        System.out.println("\nEnter CAPACITY of DAIRY COW: ");
+                        int dairyCowCamacity = input.nextInt();
+
+                        Animal animal = new DairyCow(dairyCowType, dairyCowAge, dairyCowWeight , dairyCowCamacity);
                         animalManager.addNewDairyCow(animal);
                         System.out.println("===========================================\n\n");
                         break;
@@ -435,7 +439,6 @@ public class AppSimulator {
         }
 
     }
-
 
     private void MenuMilkingMachine() {
         final int INSTALL_MACHINE = 1;
@@ -537,7 +540,6 @@ public class AppSimulator {
 
     }
 
-
     private void MenuMilkTank() {
         final int INSTALL_TANK = 1;
         final int EDIT_TANK = 2;
@@ -565,44 +567,46 @@ public class AppSimulator {
                         System.out.println("");
                         System.out.println("=====================  MENU SHEDS ====================");
                         System.out.println("======================================================");
-                        System.out.println("======= INSTALLING MILK MACHINE to the Simulator =====");
-                        System.out.println("\nEnter NAME of MILK MACHINE: ");
-                        String NameMachine = input.nextLine();
-                        MilkingMachine milkingMachine1 = new MilkingMachine(NameMachine);
-                        milkingMachineSet.installMachine(milkingMachine1);
+                        System.out.println("========= INSTALLING MILK TANK to the Simulator ======");
+                        System.out.println("\nEnter NAME of MILK TANK: ");
+                        String NameTank = input.nextLine();
+                        System.out.println("\nEnter the Phone of Farm: ");
+                        int capacity = input.nextInt();
+                        MilkTank milkTank1 = new MilkTank(NameTank, capacity);
+                        milkTankSet.installTank(milkTank1);
                         System.out.println("===========================================\n\n");
                         break;
                     case EDIT_TANK:
                         System.out.println("");
                         System.out.println("======================================================");
-                        System.out.println("==================== Editing MACHINE =================");
-                        milkingMachineSet.displayAllMilkMachines();
-                        System.out.println("\nEnter MACHINE ID to edit: ");
+                        System.out.println("==================== Editing TANK =================");
+                        milkTankSet.displayAllTanks();
+                        System.out.println("\nEnter TANK ID to edit: ");
                         boolean isNum1 = false;
                         while (isNum1 != true) {
                             try {
-                                int machineID = keyboard.nextInt();
+                                int tankID = keyboard.nextInt();
                                 isNum1 = true;
-                                milkingMachineSet.editMachine(machineID);
+                                milkTankSet.editTank(tankID);
                                 break;
                             } catch (InputMismatchException e) {
                                 keyboard.nextLine();
-                                System.out.println("Please enter a number for ID!!!");
+                                System.out.println("Please enter a CORRECT number for ID!!!");
                             }
                         }
                         break;
                     case DELETE_TANK:
                         System.out.println("");
                         System.out.println("========================================================");
-                        milkingMachineSet.displayAllMilkMachines();
-                        System.out.println("\nEnter MACHINE ID to delete: ");
+                        milkTankSet.displayAllTanks();
+                        System.out.println("\nEnter TANK ID to delete: ");
                         boolean isID = false;
                         while (isID != true) {
                             try {
-                                int machineIDdel = keyboard.nextInt();
+                                int tankIDdel = keyboard.nextInt();
                                 isID = true;
-                                //shed deleted by id
-                                milkingMachineSet.deleteMachine(machineIDdel);
+                                //tank deleted by id
+                                milkTankSet.deleteTank(tankIDdel);
 
                                 // break;
                             } catch (InputMismatchException e) {
@@ -615,9 +619,9 @@ public class AppSimulator {
                     case DISPLAY_TANKS:
                         System.out.println("");
                         System.out.println("======================================================");
-                        System.out.println("=============== Displaying Data of Farms =============");
-                        milkingMachineSet.displayAllMilkMachines();
-                        System.out.println("==================== Farms Info ends =================\n\n");
+                        System.out.println("=============== Displaying Data of TANKS =============");
+                        milkTankSet.displayAllTanks();
+                        System.out.println("==================== TANKS Info ends =================\n\n");
                         break;
                     case BACK:
                         milkTankSet.addMilkTankInFile();
@@ -638,9 +642,6 @@ public class AppSimulator {
 
 
     }
-
-
-
 
 }
 

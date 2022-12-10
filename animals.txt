@@ -1,6 +1,6 @@
-3819,BeefCow,25,50.5,beef10,522222
-3821,BeefCow,25,50.5,beef11,522222
-3822,Goat,27,50.5,lala3,34
-3824,Sheep,25,50.5,beef9,522222
-3825,DairyCow,50,20.2,lala14,40
-3826,DairyCow,20,20.2,lala1,20
+4049,BeefCow,25,50.5,beef10,522222
+4051,BeefCow,25,50.5,beef2,522222
+4053,Goat,27,50.5,lala7,55
+4055,Sheep,25,50.5,beef30,522222
+4057,Goat,27,50.5,lala5,57
+4059,DairyCow,27,50.5,lala14,46

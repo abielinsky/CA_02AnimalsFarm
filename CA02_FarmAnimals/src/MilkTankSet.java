@@ -22,7 +22,7 @@ public class MilkTankSet {
             while (INFO.hasNext()) {
                 int id = INFO.nextInt();
                 String name = INFO.next();
-                int capacity = INFO.nextInt();
+                double capacity = INFO.nextDouble();
                 MilkTankList.add(new MilkTank(id, name, capacity));
             }
             INFO.close();
@@ -31,6 +31,7 @@ public class MilkTankSet {
             System.out.println("Exception thrown" + e);
         }
     }
+
 
     public void displayAllTanks() {
         if (!MilkTankList.isEmpty()) {
