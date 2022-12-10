@@ -1,6 +1,4 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,126 +6,113 @@ import java.util.Scanner;
 
 public class AnimalManager   {
 
-    private final ArrayList<DairyCow> DairyCowList;
+    private final ArrayList<Animal> animalList;
 //    private final ArrayList<Goat> GoatList;
 //    private final ArrayList<BeefCow> BeefCowList;
 //    private final ArrayList<Sheep> SheepList;
 
     public AnimalManager(String fileName) {
-        this.DairyCowList = new ArrayList<>();
-        getDairyCowFile(fileName);
+        this.animalList = new ArrayList<>();
+        loadAnimalFromFile(fileName);
     }
 
-    public List<DairyCow> getDairyCowList() {return this.DairyCowList; }
+    private void loadAnimalFromFile(String fileName) {
 
-    private void getDairyCowFile(String filename) {
-
+        int udderCapacity = 0;
+       // String name = " ";
+        String pedigree = "";
         try {
-            Scanner INFO = new Scanner(new File(filename));
-// DELIMITER FOR COMA OR NEXT LINE
-            INFO.useDelimiter("[,\r\n]+");
-            while (INFO.hasNext()) {
-                int id = INFO.nextInt();
-                String type = INFO.next();
-                int age = INFO.nextInt();
-                double weight = INFO.nextDouble();
-                DairyCowList.add(new DairyCow(type, age, weight));
+            Scanner reed = new Scanner(new File(fileName));
+//           Delimiter: set the delimiter to be a comma character ","
+//                    or a carriage-return '\r', or a newline '\n'
+            reed.useDelimiter("[,\r\n]+");
+
+            while (reed.hasNext()) {
+
+                int id = reed.nextInt();
+                String type = reed.next();
+                int age = reed.nextInt();
+                double weight = reed.nextDouble();
+
+                String name = reed.next();
+
+                if (type.equalsIgnoreCase("DairyCow") ||
+                        type.equalsIgnoreCase("Goat")) {
+//                    name = reed.next();
+                    udderCapacity = reed.nextInt();
+                }
+                else {
+//                    name = reed.next();
+                    pedigree = reed.next();
+                }
+                if (type.equalsIgnoreCase("DairyCow") ||
+                        type.equalsIgnoreCase("Goat")) {
+                    // construct a DairyCow object and add it to the Animal list
+                    animalList.add(new DairyCow(id, type, age, weight, name, udderCapacity));
+                }
+                else if (type.equalsIgnoreCase("BeefCow") ||
+                        type.equalsIgnoreCase("Sheep")) {
+                    // construct a BeefCow object and add it to the Animal list
+                    animalList.add(new BeefCow(id, type, age, weight, name, pedigree));
+                }
             }
-            INFO.close();
+            reed.close();
         } catch (IOException e) {
-            System.out.println("Exception thrown" + e);
+            System.out.println("Exception thrown. " + e);
         }
     }
 
-    public void displayAllDailyCow() {
-        if (!DairyCowList.isEmpty()) {
-            System.out.println("--------------------------------------------------------------------------------------------------------------");
-            System.out.printf("%-5s %-10s %-10s %-20s %-25s %-15s\n", "ID", " TYPE", " TYPE", "AGE", "WEIGHT", "CAPACITY");
-            System.out.println("--------------------------------------------------------------------------------------------------------------");
-            for (DairyCow dairyCowList : this.DairyCowList) {
-                System.out.printf("%-5s %-10s %-10s %-20s %-25s %-15s\n", dairyCowList.getId(), dairyCowList.getName(), dairyCowList.getType(), dairyCowList.getAge(), dairyCowList.getWeight(), dairyCowList.getUdderCapacity());
+
+
+    public void displayAllAnimals()
+    {
+        System.out.printf("%-10s%-12s%-18s%-18s%-20s%-20s%-20s%-20s \n",
+                "Id",
+                "Type",
+                "Age",
+                "Weight",
+                "nameDairyCow",
+                "udderCapacity",
+                "nameBeefCow",
+                "pedigree"
+                );
+
+        System.out.println("=======   =========   ===============   ===============   =================   =================   ===============   ===============");
+        for (Animal a : animalList)
+            System.out.printf("%-10s%-12s%-18s%-18s%-20s%-20s%-20s%-20s\n",
+
+                   a.getId(), a.getType(), a.getAge(), a.getWeight(),
+
+                    (a instanceof DairyCow ? ((DairyCow) a).getName(): "-" ),
+                    (a instanceof DairyCow ? ((DairyCow) a).getUdderCapacity(): "-"),
+                    (a instanceof BeefCow ? ((BeefCow) a).getName(): ""),
+                    (a instanceof BeefCow ? ((BeefCow) a).getPedigree(): "-")
+            );
+
+
+    }
+
+
+    public void saveAnimalToFile(String fileName) {
+        try
+        {
+            PrintWriter out = new PrintWriter(fileName);
+            for (Animal a : animalList) {
+                if (a.getType().equalsIgnoreCase("DairyCow") || a.getType().equalsIgnoreCase("Goat"))
+                    out.println(a.getId()+","+a.getType()+","+a.getAge()+","+a.getWeight()
+                                +","+((DairyCow) a).getName()+","+((DairyCow) a).getUdderCapacity());
+                else
+                    out.println(a.getId()+","+a.getType()+","+a.getAge()+","+a.getWeight()
+                            +","+((BeefCow) a).getName()+","+((BeefCow) a).getPedigree());
             }
-        } else {
-            System.out.println("\n *********** NO DAIRY COWS IN THE DATA *************");
+            out.close();
         }
-    }
-
-    public Farm addNewDailyCow(DairyCow dairyCow) throws IOException {
-        boolean found = false;
-        for (DairyCow dairyCow1 : DairyCowList) {
-            if (dairyCow.equals(dairyCow1)) {
-                found = true;
-                System.out.println("DAIRY COW WITH SAME DATA");
-                break;
-            }
+        catch (FileNotFoundException exception) {
+            System.out.println("FileNotFoundException caught." + exception);
+            exception.printStackTrace();
         }
-        if (found == false) {
-            DairyCowList.add(dairyCow);
-            System.out.println("===========> DAIRY COW ADDED <=========");
-        }
-        return null;
+
     }
-
-
-    //adding de information to the file
-    public void addDairyCowInFile() throws IOException {
-        FileWriter writer = new FileWriter("dairyCow.txt");
-        for (DairyCow dairyCow : DairyCowList) {
-            String data = dairyCow.getId() +     "," +  dairyCow.getName()  + "," +
-                          dairyCow.getType() +   "," +  dairyCow.getAge()   + "," +
-                          dairyCow.getWeight() + "," +  dairyCow.getUdderCapacity() ;
-            writer.append(data + "\n");
-        }
-        writer.close();
-        System.out.println("DAIRY COW IS SAVED IN FILE!!!");
-    }
-
-
-
-
-    public void editDairyCow(int id) {
-        DairyCow dairyCow1 = findDairyCowbyID(id);
-        Scanner input = new Scanner(System.in);
-        System.out.println("\nEnter NEW TYPE of ANIMAL: ");
-        String dairyCowType = input.nextLine();
-        System.out.println("\nEnter NEW AGE of ANIMAL: ");
-        int dairyCowAge = input.nextInt();
-        System.out.println("\nEnter NEW WEIGHT of ANIMAL: ");
-        int dairyCowWeight = input.nextInt();
-        dairyCow1.setType(dairyCowType);
-        dairyCow1.setAge(dairyCowAge);
-        dairyCow1.setWeight(dairyCowWeight);
-        System.out.println(" ==========>  The DAIRY COW with ID " + id + " has been edited <===== ");
-    }
-
-    public DairyCow findDairyCowbyID(int id) {
-        for (DairyCow dairyCow : DairyCowList) {
-            if (dairyCow.getId() == id) {
-                return dairyCow;
-            }
-        }
-        System.out.println("\n=========>  There is no FArm with id " + id + " in the list!  <====== ");
-        return null;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

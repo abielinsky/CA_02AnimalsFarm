@@ -29,11 +29,8 @@ public class AppSimulator {
 
         System.out.println(FarmA);
 
-
         AppSimulator app = new AppSimulator();
         app.start();
-
-
 
     }
 
@@ -43,12 +40,16 @@ public class AppSimulator {
         System.out.println("\nFarm Simulator System for milky animals");
         farmSet = new FarmSet("farm.txt");
         shedSet = new ShedsSet("shed.txt");
-        animalManager = new AnimalManager("dairyCow.txt");
+        animalManager = new AnimalManager("animals.txt");
+
         try {
             displayMenu();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        animalManager.saveAnimalToFile("animals.txt");
 
     }
 
@@ -123,7 +124,7 @@ public class AppSimulator {
 
                 case EXIT: //FINISH ALL PROCESS
                     farmSet.addFarmInFile();
-                    animalManager.addDairyCowInFile();
+//                    animalManager.addDairyCowInFile();
                     System.out.println(" bye bye bye");
                     break;
 
@@ -264,7 +265,9 @@ public class AppSimulator {
         final int GOAT = 2;
         final int BEEF_COW = 3;
         final int SHEEP = 4;
-        final int BACK = 5;
+        final int DISPLAY = 5;
+        final int BACK = 6;
+
 
         Scanner input = new Scanner(System.in);
         int option = 0;
@@ -277,6 +280,7 @@ public class AppSimulator {
             System.out.println("|   3.  BEEF_COW       ==>   |");
             System.out.println("|   4.  SHEEP          ==>   |");
             System.out.println("|   5.  <============ BACK   |");
+            System.out.println("|   6.  <============ BACK   |");
             System.out.println("******************************");
             System.out.println("    Option [1 - 5]");
 
@@ -308,6 +312,16 @@ public class AppSimulator {
                     System.out.println("======================================================");
                     System.out.println("============= ===========");
                     break;
+
+                case DISPLAY:
+                    System.out.println("");
+                    System.out.println("======================================================");
+                    animalManager.displayAllAnimals();
+                    System.out.println("============= =============");
+                    break;
+
+
+
                 case BACK:
 
 
@@ -351,40 +365,40 @@ public class AppSimulator {
 
                     case ADD_DAIRY_COW: //Checking data farm
 
-                        System.out.println("");
-                        System.out.println("===============  MENU DAIRY COW============");
-
-
-                        System.out.println("\nEnter TYPE of DAIRY COW: ");
-                        String dairyCowType = input.nextLine();
-                        System.out.println("\nEnter AGE of DAIRY COW: ");
-                        int dairyCowAge = input.nextInt();
-                        System.out.println("\nEnter WEIGHT of DAIRY COW: ");
-                        double dairyCowWeight = input.nextDouble();
-
-                        DairyCow dairyCow1 = new DairyCow(dairyCowType, dairyCowAge, dairyCowWeight );
-                        animalManager.addNewDailyCow(dairyCow1);
+//                        System.out.println("");
+//                        System.out.println("===============  MENU DAIRY COW============");
+//
+//
+//                        System.out.println("\nEnter TYPE of DAIRY COW: ");
+//                        String dairyCowType = input.nextLine();
+//                        System.out.println("\nEnter AGE of DAIRY COW: ");
+//                        int dairyCowAge = input.nextInt();
+//                        System.out.println("\nEnter WEIGHT of DAIRY COW: ");
+//                        double dairyCowWeight = input.nextDouble();
+//
+//                        DairyCow dairyCow1 = new DairyCow(dairyCowType, dairyCowAge, dairyCowWeight );
+//                        animalManager.addNewDailyCow(dairyCow1);
 
 
                         System.out.println("===========================================\n\n");
                         break;
                     case EDIT_DAIRY_COW:
-                        System.out.println("");
-                        System.out.println("======================================================");
-
-                        System.out.println("\nEnter DAIRY COW ID to edit: ");
-                        boolean isNum1 = false;
-                        while (isNum1 != true) {
-                            try {
-                                int dairyCowID = keyboard.nextInt();
-                                isNum1 = true;
-                                animalManager.editDairyCow(dairyCowID);
-                                break;
-                            } catch (InputMismatchException e) {
-                                keyboard.nextLine();
-                                System.out.println("Please enter a number for ID!!!");
-                            }
-                        }
+//                        System.out.println("");
+//                        System.out.println("======================================================");
+//
+//                        System.out.println("\nEnter DAIRY COW ID to edit: ");
+//                        boolean isNum1 = false;
+//                        while (isNum1 != true) {
+//                            try {
+//                                int dairyCowID = keyboard.nextInt();
+//                                isNum1 = true;
+//                                animalManager.editDairyCow(dairyCowID);
+//                                break;
+//                            } catch (InputMismatchException e) {
+//                                keyboard.nextLine();
+//                                System.out.println("Please enter a number for ID!!!");
+//                            }
+//                        }
 
                         System.out.println("========================================================");
                         break;
@@ -394,18 +408,18 @@ public class AppSimulator {
                         System.out.println("=====================");
                         break;
                     case DISPLAY_ALL_DAIRY_COW:
-                        System.out.println("");
-                        System.out.println("===========================================================");
-                        System.out.println("================== Displaying Data of DAIRY COWS ===============");
-                        animalManager.displayAllDailyCow();
-                        System.out.println("======================= Farms Info ends ===================\n\n");
-                        System.out.println("===========================================================");
+//                        System.out.println("");
+//                        System.out.println("===========================================================");
+//                        System.out.println("================== Displaying Data of DAIRY COWS ===============");
+//                        animalManager.displayAllDailyCow();
+//                        System.out.println("======================= Farms Info ends ===================\n\n");
+//                        System.out.println("===========================================================");
 
                         break;
 
                     case BACK:
 
-                        animalManager.addDairyCowInFile();
+//                        animalManager.addDairyCowInFile();
                         System.out.println(" GOING BACK ");
                         break;
 
@@ -413,7 +427,7 @@ public class AppSimulator {
                         System.out.println("Enter a right option");
                         break;
                 }
-            }catch (InputMismatchException | NumberFormatException | IOException  e) {
+            }catch (InputMismatchException | NumberFormatException e) {
                 //   System.out.print("PLEASE ENTER A VALID OPTION");
             }
         }while (option != BACK) ;
