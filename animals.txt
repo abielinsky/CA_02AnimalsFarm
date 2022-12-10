@@ -4,3 +4,9 @@
 4055,Sheep,25,50.5,beef30,522222
 4057,Goat,27,50.5,lala5,57
 4059,DairyCow,27,50.5,lala14,46
+4051,Goat,27,50.5,lala5,57
+4053,DairyCow,27,50.5,lala14,46
+4055,Goat,27,50.5,lala5,57
+4057,DairyCow,27,50.5,lala14,46
+4059,Goat,27,50.5,lala5,57
+4061,DairyCow,27,50.5,lala14,46

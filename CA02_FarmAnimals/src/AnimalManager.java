@@ -1,15 +1,16 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 
-public class AnimalManager   {
+public class AnimalManager  implements Serializable {
 
     private final ArrayList<Animal> animalList;
+
 //    private final ArrayList<Goat> GoatList;
 //    private final ArrayList<BeefCow> BeefCowList;
 //    private final ArrayList<Sheep> SheepList;
+
 
     public AnimalManager(String fileName) {
         this.animalList = new ArrayList<>();
@@ -165,10 +166,27 @@ public class AnimalManager   {
     }
 
 
-    public void deleteAnimalById(int id) {
-        animalList.removeIf(b -> b.equals(findAnimalByID(id)));
+
+    public void deleteAnimalById(int animalID) {
+        animalList.removeIf(n -> n.equals(findAnimalByID(animalID)));
+//        animalList.removeIf(n -> (n.equals(findAnimalByID(animalID))));
+//        animalList.removeIf(n -> (n.equals(animalID)));
+//          animalList.removeIf(n -> (n.findAnimalByID.equals(animalID)));
     }
 
 
+    public double calculateAverageMilk() {
+        double total = 0;
 
+        DairyCow b;
+        for (int i=0; i<= animalList.size(); i++) {
+//            total += b.getUdderCapacity();
+//            total += DairyCow.get(i).getUdderCapacity();
+        }
+
+        return total / animalList.size();
+    }
+    
+    
+    
 }

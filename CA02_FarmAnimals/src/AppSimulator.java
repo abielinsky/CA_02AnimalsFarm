@@ -344,6 +344,10 @@ public class AppSimulator {
                             case DELETE:
                                 DeleteAnimalByID();
                                 break;
+                            case AVERAGE_MILK:
+                                System.out.println("\nAverage of MILK PRODUCED\n" +
+                                        animalManager.calculateAverageMilk());
+                                break;
                             case BACK:
                                 System.out.println(" GOING BACK ");
                                 break;
@@ -369,7 +373,7 @@ public class AppSimulator {
             System.out.println("________ DAIRY COW MENU _______");
             System.out.println("|   1.  ADD          ==>   |");
             System.out.println("|   2.  EDIT         ==>   |");
-            System.out.println("|   4.  <========== BACK   |");
+            System.out.println("|   3.  <========== BACK   |");
             System.out.println("******************************");
             System.out.println("    Option [1 - 4]");
             try {
@@ -384,10 +388,8 @@ public class AppSimulator {
                         int dairyCowAge = input.nextInt();
                         System.out.println("\nEnter WEIGHT of DAIRY COW: ");
                         double dairyCowWeight = input.nextDouble();
-                        System.out.println("\nEnter CAPACITY of DAIRY COW: ");
-                        int dairyCowCamacity = input.nextInt();
 
-                        Animal animal = new DairyCow(dairyCowType, dairyCowAge, dairyCowWeight , dairyCowCamacity);
+                        Animal animal = new DairyCow(dairyCowType, dairyCowAge, dairyCowWeight );
                         animalManager.addNewDairyCow(animal);
                         System.out.println("===========================================\n\n");
                         break;
@@ -428,8 +430,10 @@ public class AppSimulator {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Animals List:");
         animalManager.displayAllAnimals();
+
         System.out.println("Enter ID of the Animal that you want to delete:");
         int animalID = keyboard.nextInt();
+
         if (animalManager.findAnimalByID(animalID) != null) {
             animalManager.deleteAnimalById(animalID);
             System.out.println("Animal deleted");
@@ -439,6 +443,8 @@ public class AppSimulator {
         }
 
     }
+
+
 
     private void MenuMilkingMachine() {
         final int INSTALL_MACHINE = 1;
