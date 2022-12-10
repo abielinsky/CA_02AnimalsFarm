@@ -66,9 +66,9 @@ public class MilkTankApp {
 
                 // to read a double value use scanner.nextDouble()
 
-                MilkTank tank = new MilkTank(name, capacity);
+//                MilkTank tank = new MilkTank(name, capacity);
 
-                tankList.add(tank);
+//                tankList.add(tank);
             }
 
         } catch (FileNotFoundException exception) {

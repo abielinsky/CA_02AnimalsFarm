@@ -9,8 +9,8 @@ public class AppSimulator {
     FarmSet farmSet;
     ShedsSet shedSet;
     AnimalManager animalManager;
-
     MilkingMachineSet milkingMachineSet;
+    MilkTankSet milkTankSet;
 
     public static void main(String[] args) throws IOException {
 
@@ -18,7 +18,7 @@ public class AppSimulator {
         Farm FarmA = new Farm(2536, "Abiel", "D52F325", 25632563);
         FarmA.addCow(new DairyCow("milkCow", 10, 50.20));
         Shed shedA = new Shed(636, "SHED1" );
-        MilkTank tank1 = new MilkTank("TANK1", 2000);
+        MilkTank tank1 = new MilkTank(3663,"TANK1", 2000);
 
         tank1.addMilkToTank(500);
 
@@ -42,6 +42,7 @@ public class AppSimulator {
         shedSet = new ShedsSet("shed.txt");
         animalManager = new AnimalManager("animals.txt");
         milkingMachineSet = new MilkingMachineSet("milkingMachine.txt");
+        milkTankSet = new MilkTankSet("milktanks.txt");
 
         try {
             displayMenu();
@@ -518,6 +519,108 @@ public class AppSimulator {
                         System.out.println("==================== Farms Info ends =================\n\n");
                         break;
                     case BACK:
+                        milkingMachineSet.addMachineInFile();
+                        animalManager.addDairyCowInFile();
+                        shedSet.addShedInFile();
+                        System.out.println(" GOING BACK ");
+                        break;
+                    default:
+                        System.out.println("Enter a right option");
+                        break;
+                }
+            }catch (InputMismatchException | NumberFormatException | IOException  e) {
+                //   System.out.print("PLEASE ENTER A VALID OPTION");
+            }
+        }while (option != BACK) ;
+
+
+
+    }
+
+
+    private void MenuMilkTank() {
+        final int INSTALL_TANK = 1;
+        final int EDIT_TANK = 2;
+        final int DELETE_TANK = 3;
+        final int DISPLAY_TANKS = 4;
+        final int BACK = 5;
+        Scanner input = new Scanner(System.in);
+        int option = 0;
+        do {
+            System.out.println("\n\n");
+            System.out.println("__________   *** TANK   *** _________");
+            System.out.println("|   1.  INSTALL          ==>   |");
+            System.out.println("|   2.  EDIT             ==>   |");
+            System.out.println("|   3.  DELETE           ==>   |");
+            System.out.println("|   4.  DISPLAY ALL      ==>   |");
+            System.out.println("|   5.  <============== BACK   |");
+            System.out.println("************************************");
+            System.out.println("    Option [1 - 4]");
+            try {
+                String usersInput = input.nextLine();
+                option = Integer.parseInt(usersInput);
+                Scanner keyboard = new Scanner(System.in);
+                switch (option) {
+                    case INSTALL_TANK: //Checking data farm
+                        System.out.println("");
+                        System.out.println("=====================  MENU SHEDS ====================");
+                        System.out.println("======================================================");
+                        System.out.println("======= INSTALLING MILK MACHINE to the Simulator =====");
+                        System.out.println("\nEnter NAME of MILK MACHINE: ");
+                        String NameMachine = input.nextLine();
+                        MilkingMachine milkingMachine1 = new MilkingMachine(NameMachine);
+                        milkingMachineSet.installMachine(milkingMachine1);
+                        System.out.println("===========================================\n\n");
+                        break;
+                    case EDIT_TANK:
+                        System.out.println("");
+                        System.out.println("======================================================");
+                        System.out.println("==================== Editing MACHINE =================");
+                        milkingMachineSet.displayAllMilkMachines();
+                        System.out.println("\nEnter MACHINE ID to edit: ");
+                        boolean isNum1 = false;
+                        while (isNum1 != true) {
+                            try {
+                                int machineID = keyboard.nextInt();
+                                isNum1 = true;
+                                milkingMachineSet.editMachine(machineID);
+                                break;
+                            } catch (InputMismatchException e) {
+                                keyboard.nextLine();
+                                System.out.println("Please enter a number for ID!!!");
+                            }
+                        }
+                        break;
+                    case DELETE_TANK:
+                        System.out.println("");
+                        System.out.println("========================================================");
+                        milkingMachineSet.displayAllMilkMachines();
+                        System.out.println("\nEnter MACHINE ID to delete: ");
+                        boolean isID = false;
+                        while (isID != true) {
+                            try {
+                                int machineIDdel = keyboard.nextInt();
+                                isID = true;
+                                //shed deleted by id
+                                milkingMachineSet.deleteMachine(machineIDdel);
+
+                                // break;
+                            } catch (InputMismatchException e) {
+                                keyboard.nextLine();
+                                System.out.println("INPUT A CORRECT ID!!!");
+                            }
+                        }
+
+                        break;
+                    case DISPLAY_TANKS:
+                        System.out.println("");
+                        System.out.println("======================================================");
+                        System.out.println("=============== Displaying Data of Farms =============");
+                        milkingMachineSet.displayAllMilkMachines();
+                        System.out.println("==================== Farms Info ends =================\n\n");
+                        break;
+                    case BACK:
+                        milkTankSet.addMilkTankInFile();
                         milkingMachineSet.addMachineInFile();
                         animalManager.addDairyCowInFile();
                         shedSet.addShedInFile();
