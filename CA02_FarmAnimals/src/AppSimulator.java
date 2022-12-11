@@ -89,13 +89,20 @@ public class AppSimulator {
 
         System.out.println("\n==============================================  ANIMALS IN FARM H  =====================================================================");
         FarmH.addCow(new DairyCow(1002, "DairyCow", 10, 10.20, "", 0));
-        FarmH.addCow(new DairyCow(1002, "DairyCow", 10, 10.20, "", 0));
-        System.out.println(FarmA);
+        FarmH.addCow(new DairyCow(1003, "DairyCow", 10, 10.20, "", 0));
+        System.out.println(FarmH);
         System.out.println("============================================================================================================================================");
-        System.out.println("\n==============================================  MILK TANKS IN SHED A y B =====================================================================");
+        System.out.println("\n==============================================   MILK TANKS IN SHEDS  =====================================================================");
         System.out.println(shedA);
         System.out.println(shedB);
         System.out.println("============================================================================================================================================");
+
+//        DairyCow.milk();
+        System.out.println(".........................");
+        System.out.println("---Change apllied---");
+
+
+
 
         AppSimulator app = new AppSimulator();
         app.start();
@@ -710,6 +717,8 @@ public class AppSimulator {
 
 
     }
+
+
 
 }
 

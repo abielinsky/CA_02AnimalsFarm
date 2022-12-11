@@ -136,5 +136,17 @@ public class DairyCow extends Animal implements IMilkable{
                 ", weight=" + weight +
                 '}';
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
