@@ -131,6 +131,17 @@ public class Goat extends Animal implements IMilkable{
     }
 
 
+    @Override
+    public String toString() {
+        return "Goat{" +
+                "name='" + name + '\'' +
+                ", udderCapacity=" + udderCapacity +
+                ", id=" + id +
+                ", type='" + type + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                '}';
+    }
 
 
 

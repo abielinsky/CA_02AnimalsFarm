@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class AppSimulator {
 
@@ -14,6 +12,9 @@ public class AppSimulator {
 
     public static void main(String[] args) throws IOException {
 
+        List<Farm> MyListFarmCompareTo = new ArrayList<Farm>();
+        List<Farm> MyListFarmCompare = new ArrayList<Farm>();
+
 
         Farm FarmA = new Farm(2536, "Abiel", "D52F325", 25632563);
         FarmA.addCow(new DairyCow(5252, "DairyCow", 10, 50.20, "", 60));
@@ -22,8 +23,9 @@ public class AppSimulator {
 
         Shed shedA = new Shed(636, "SHED1" );
 
-
         tank1.addMilkToTank(500);
+        tank1.addMilkToTank(100);
+        tank1.addMilkToTank(300);
 
         FarmA.addShed(shedA);
 //        shedA.installMilkingMachine(milkingMachine);
@@ -31,7 +33,69 @@ public class AppSimulator {
         shedA.addMilkTank(tank1);
         shedA.milkAllAnimals();
 
+        Farm FarmB = new Farm(2537, "Luis", "D52F202", 52634152);
+        Farm FarmC = new Farm(2524, "Jack", "D52F205", 96325874);
+        Farm FarmD = new Farm(2525, "Ann", "D52F302", 96325896);
+        Farm FarmE = new Farm(2540, "Derek", "D52F536", 41258796);
+        Farm FarmF = new Farm(2551, "Maria", "D52F528", 52364185);
+        Farm FarmG = new Farm(2553, "Patrick", "D52F897", 321478965);
+        Farm FarmH = new Farm(2560, "Joseph", "D52F636", 932178264);
+
+        MyListFarmCompareTo.add(FarmA);
+        MyListFarmCompareTo.add(FarmB);
+        MyListFarmCompareTo.add(FarmC);
+        MyListFarmCompareTo.add(FarmD);
+        MyListFarmCompareTo.add(FarmE);
+        MyListFarmCompareTo.add(FarmF);
+        MyListFarmCompareTo.add(FarmG);
+        MyListFarmCompareTo.add(FarmH);
+
+        MyListFarmCompare.add(FarmA);
+        MyListFarmCompare.add(FarmB);
+        MyListFarmCompare.add(FarmC);
+        MyListFarmCompare.add(FarmD);
+        MyListFarmCompare.add(FarmE);
+        MyListFarmCompare.add(FarmF);
+        MyListFarmCompare.add(FarmG);
+        MyListFarmCompare.add(FarmH);
+        System.out.println("============================================  SORT BY COMPARE CLASS  =====================================================================");
+        Collections.sort(MyListFarmCompare, new orderCompare());
+        for (Farm farm : MyListFarmCompare)
+        {
+            System.out.println(farm);
+        }
+        System.out.println("============================================  SORT BY COMPARE CLASS  ====================================================================");
+
+        FarmB.addCow(new DairyCow(5151, "DairyCow", 15, 200.20, "", 10));
+        MilkingMachine milkingMachine2 = new MilkingMachine(1110, "Mega");
+        MilkTank tank2 = new MilkTank(2020,"TANK2", 2000);
+
+        tank2.addMilkToTank(500);
+        tank2.addMilkToTank(600);
+        tank2.addMilkToTank(300);
+
+        Shed shedB = new Shed(203, "SHED2" );
+
+        FarmB.addShed(shedB);
+        FarmB.addMilkingMachine(milkingMachine);
+        shedB.addMilkTank(tank2);
+        shedB.milkAllAnimals();
+        System.out.println("============================================================================================================================================");
+        System.out.println("==============================================  FARMS AND ITS DATA  ======================================================================");
         System.out.println(FarmA);
+        System.out.println(FarmB);
+        System.out.println("==============================================  FARMS AND ITS DATA  =====================================================================");
+        System.out.println("============================================================================================================================================");
+
+        System.out.println("\n==============================================  ANIMALS IN FARM H  =====================================================================");
+        FarmH.addCow(new DairyCow(1002, "DairyCow", 10, 10.20, "", 0));
+        FarmH.addCow(new DairyCow(1002, "DairyCow", 10, 10.20, "", 0));
+        System.out.println(FarmA);
+        System.out.println("============================================================================================================================================");
+        System.out.println("\n==============================================  MILK TANKS IN SHED A y B =====================================================================");
+        System.out.println(shedA);
+        System.out.println(shedB);
+        System.out.println("============================================================================================================================================");
 
         AppSimulator app = new AppSimulator();
         app.start();
@@ -300,12 +364,12 @@ public class AppSimulator {
             System.out.println("\n\n");
             System.out.println("__________ ANIMALS MENU __________________");
             System.out.println("|   1.  DAIRY COW             ==>   |");
-//            System.out.println("|   2.  GOAT                  ==>   |");
-//            System.out.println("|   3.  BEEF_COW              ==>   |");
-//            System.out.println("|   4.  SHEEP                 ==>   |");
+//            System.out.println("|   2.  GOAT                  ==>   |"); //same structure from DairyCow didn't have enough time to finish it
+//            System.out.println("|   3.  BEEF_COW              ==>   |"); //same structure from DairyCow didn't have enough time to finish it
+//            System.out.println("|   4.  SHEEP                 ==>   |"); //same structure from DairyCow didn't have enough time to finish it
             System.out.println("|   5.  DISPLAY ALL           ==>   |");
             System.out.println("|   6.  DELETE                ==>   |");
-            System.out.println("|   7.  AVERAGE MILK          ==>   |");
+            System.out.println("|   7.  AVERAGE MILK          ==>   |"); // need more time
             System.out.println("|   9.  <================== BACK    |");
             System.out.println("******************************************");
             System.out.println("    Option [1 - 6]");
@@ -345,8 +409,8 @@ public class AppSimulator {
                                 DeleteAnimalByID();
                                 break;
                             case AVERAGE_MILK:
-                                System.out.println("\nAverage of MILK PRODUCED\n" +
-                                        animalManager.calculateAverageMilk());
+//                                System.out.println("\nAverage of MILK PRODUCED\n" +
+//                                        animalManager.calculateAverageMilk());
                                 break;
                             case BACK:
                                 System.out.println(" GOING BACK ");
@@ -443,8 +507,6 @@ public class AppSimulator {
         }
 
     }
-
-
 
     private void MenuMilkingMachine() {
         final int INSTALL_MACHINE = 1;

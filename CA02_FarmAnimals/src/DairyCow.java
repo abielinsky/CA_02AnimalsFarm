@@ -73,8 +73,6 @@ public class DairyCow extends Animal implements IMilkable{
 
                 ", udderBalance=" + udderBalance +
                 ", udderCapacity=" + udderCapacity ;
-
-
     }
 
 
@@ -127,8 +125,16 @@ public class DairyCow extends Animal implements IMilkable{
     }
 
 
-
-
-
+    @Override
+    public String toString() {
+        return "DairyCow{" +
+                "udderCapacity=" + udderCapacity +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                ", type='" + type + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                '}';
+    }
 }
 

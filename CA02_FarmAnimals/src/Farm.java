@@ -41,6 +41,7 @@ public class Farm {
         this.owner = owner;
         this.postcode = postcode;
         this.phone = phone;
+
     }
 
     public int getId() {

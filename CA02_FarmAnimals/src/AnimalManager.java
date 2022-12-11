@@ -1,3 +1,5 @@
+import Enu.Animallist;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +8,6 @@ import java.util.Scanner;
 public class AnimalManager  implements Serializable {
 
     private final ArrayList<Animal> animalList;
-
 //    private final ArrayList<Goat> GoatList;
 //    private final ArrayList<BeefCow> BeefCowList;
 //    private final ArrayList<Sheep> SheepList;
@@ -177,16 +178,14 @@ public class AnimalManager  implements Serializable {
 
     public double calculateAverageMilk() {
         double total = 0;
-
-        DairyCow b;
-        for (int i=0; i<= animalList.size(); i++) {
-//            total += b.getUdderCapacity();
-//            total += DairyCow.get(i).getUdderCapacity();
-        }
-
+//
+//        for (DairyCow a : Animallist) {
+//            total += a.getUdderCapacity();
+//        }
+//
         return total / animalList.size();
     }
-    
+
     
     
 }
