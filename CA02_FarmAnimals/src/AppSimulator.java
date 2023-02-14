@@ -98,8 +98,8 @@ public class AppSimulator {
         System.out.println("============================================================================================================================================");
 
 //        DairyCow.milk();
-        System.out.println(".........................");
-        System.out.println("---Change apllied---");
+//        System.out.println(".........................");
+//        System.out.println("---Change apllied---");
 
 
 
